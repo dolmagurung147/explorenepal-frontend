@@ -1,17 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom'
 
-import Home from './Containers/Home'
+import MainContainer from './Containers/MainContainer'
 
-import NavBar from './Components/NavBar'
 
 function App() {
   return (
-    <div>
-      <NavBar />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <MainContainer/>
+    </BrowserRouter>
   );
 }
 

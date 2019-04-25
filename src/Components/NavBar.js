@@ -1,9 +1,11 @@
-import React from "react"
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   return (
     <div>
-      <p>Home </p>
+      <Link to="/home">Home </Link>
+      <Link to="/login">Login/Logout </Link>
     </div>
   )
 }

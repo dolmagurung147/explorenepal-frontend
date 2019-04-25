@@ -3,16 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
 
-const initialState = {loggedin: false}
+import { createStore, applyMiddleware } from 'redux' //create a store
+import { Provider } from 'react-redux' //in order to provide state to other components
+
+import { FETCH_DESTINATIONS } from './actions/types'
+import thunk from 'redux-thunk'
+
+
+const initialState = {loggedin: false, destinations: []}
 
 const reducer = (state=initialState, action) => {
-  return state
+  console.log(action);
+  switch (action.type){
+    case FETCH_DESTINATIONS:
+      return{...state, destinations: action.payload}
+    default:
+      return state
+  }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 
 ReactDOM.render(

@@ -1,11 +1,33 @@
-import React from "react"
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import * as actions from "../actions"
 
-const Explore = () => {
-  return (
-    <div>
+import DestinationCard from '../Components/DestinationCard'
+
+class Explore extends Component {
+
+  componentDidMount() {
+    this.props.fetchDestinations();
+  }
+
+  render() {
+    const destinationCards = this.props.destinations.map(destinationObj => {
+      return <DestinationCard key={destinationObj.id} destination={destinationObj}/>
+    })
+
+    return (
+      <div>
       <h2>Explore</h2>
-    </div>
-  )
+      {destinationCards}
+      </div>
+    )
+  }
 }
 
-export default Explore
+const mapStateToProps = (state) => {
+  return {
+    destinations: state.destinations
+  }
+}
+
+export default connect(mapStateToProps, actions)(Explore)
