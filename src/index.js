@@ -6,14 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-const initialState = {}
+const initialState = {loggedin: false}
 
 const reducer = (state=initialState, action) => {
   return state
 }
 
-
-
+const store = createStore(reducer)
 
 
 ReactDOM.render(
