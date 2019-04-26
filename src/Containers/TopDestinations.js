@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const TopDestinations = (props) => {
-  // console.log(props);
+  console.log(props);
   // let topDestinations = props.destinations.filter(destination => {
   //   return destination
   // })
