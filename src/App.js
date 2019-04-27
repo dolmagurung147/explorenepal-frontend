@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom'
@@ -6,12 +6,13 @@ import { BrowserRouter } from 'react-router-dom'
 import MainContainer from './Containers/MainContainer'
 
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
+      <BrowserRouter>
       <MainContainer/>
-    </BrowserRouter>
-  );
+      </BrowserRouter>
+    );
+
 }
 
 export default App;

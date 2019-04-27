@@ -7,20 +7,22 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux' //create a store
 import { Provider } from 'react-redux' //in order to provide state to other components
 
-import { FETCH_DESTINATIONS, LOGINUSER } from './actions/types'
+import { FETCH_DESTINATIONS, LOGINUSER, SIGNUPUSER } from './actions/types'
 import thunk from 'redux-thunk'
 
 
-const initialState = {loggedin: false, destinations: [], whoIsLoggedIn: null}
+const initialState = {loggedin: false, destinations: [], whoIsLoggedIn: null, loggedInuserInfo: {}}
 
 const reducer = (state=initialState, action) => {
   switch (action.type){
     case FETCH_DESTINATIONS:
       return{...state, destinations: action.payload}
-    case LOGINUSER:
+    case SIGNUPUSER:
       let currentUser = action.payload.tour_guide ? "tour_guide" : "tourist"
-      debugger
-      return{...state, loggedin: true, whoIsLoggedIn: currentUser}
+      return{...state, loggedin: true, whoIsLoggedIn: currentUser, loggedInuserInfo: action.payload[currentUser]}
+    case LOGINUSER:
+      let user = action.payload.tour_guide ? "tour_guide" : "tourist"
+      return{...state, loggedin: true, whoIsLoggedIn: user, loggedInuserInfo: action.payload[user]}
     default:
       return state
   }

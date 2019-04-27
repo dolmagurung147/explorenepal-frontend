@@ -1,6 +1,7 @@
 import {
   FETCH_DESTINATIONS,
-  LOGINUSER
+  LOGINUSER,
+  SIGNUPUSER
 } from './types'
 
 
@@ -14,22 +15,44 @@ export const fetchDestinations = () => {
   }
 }
 
-export const tourguideSignUp = (newTourGuide) => {
+export const newUserSignUp = (newUser, type) => {
+  let userType = type
   return (dispatch) => {
-    fetch('http://localhost:3000/tour_guides', {
+    fetch(`http://localhost:3000/${userType}s`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        tour_guide: newTourGuide
+        [userType]: newUser
       })
     })
     .then(res => res.json())
     .then(response => {
-      // {tour_guide: {…}, token: "eyJhbGciOiJIUzI1NiJ9.eyJ0b3VyX2d1aWRlX2lkIjoyNH0.yWg694VilOlRnk8qYNen4KEuQukrEIk2wW83rEv1mPc"}
-      dispatch({type: LOGINUSER, payload: response})
+      dispatch({type: SIGNUPUSER, payload: response})
+      localStorage.setItem("token", response.token)
     })
   }
 }
+
+
+export const login = (token, usertype) => {
+  return dispatch => {
+    fetch('http://localhost:3000/login', {
+      headers: {
+        'Authorization': token,
+        'user': usertype
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          alert(data.errors)
+        } else {
+          // dispatch({ type: 'LOGINUSER', payload: data.user})
+          console.log(data);
+        }
+      })
+    }
+  }

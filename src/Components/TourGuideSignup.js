@@ -22,7 +22,7 @@ class TourGuideSignup extends React.Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
-    this.props.tourguideSignUp(this.state);
+    this.props.newUserSignUp(this.state, "tour_guide");
   }
 
   render() {

@@ -2,6 +2,9 @@ import React from 'react'
 import TouristSignup from '../Components/TouristSignup'
 import TourGuideSignup from '../Components/TourGuideSignup'
 
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+
 class Login extends React.Component {
   state = {
     newUser: false,
@@ -33,10 +36,34 @@ class Login extends React.Component {
       touristSignup: false
     })
   }
+  
+  matchUserforLogin = (username, password, type) => {
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Accepts': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {username: username, password: password, type: type}
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.errors) {
+        alert(data.errors)
+      } else {
+        localStorage.setItem('token', data.token)
+        this.props.login(data.user)
+        console.log(data)
+      }
+    })
+  }
 
   touristLoginFormHandler = (e) => {
     e.preventDefault();
-    console.log("tourist form");
+    let type = this.state.touristLogin ? "tourist" : "tour_guide"
+    this.matchUserforLogin(this.state.username, this.state.password, type)
   }
 
   tourguideLoginFormHandler = (e) => {
@@ -102,4 +129,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default connect(null, actions )(Login)
