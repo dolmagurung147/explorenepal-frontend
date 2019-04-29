@@ -36,34 +36,12 @@ class Login extends React.Component {
       touristSignup: false
     })
   }
-  
-  matchUserforLogin = (username, password, type) => {
-    fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Accepts': 'application/json',
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        user: {username: username, password: password, type: type}
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.errors) {
-        alert(data.errors)
-      } else {
-        localStorage.setItem('token', data.token)
-        this.props.login(data.user)
-        console.log(data)
-      }
-    })
-  }
+
 
   touristLoginFormHandler = (e) => {
     e.preventDefault();
     let type = this.state.touristLogin ? "tourist" : "tour_guide"
-    this.matchUserforLogin(this.state.username, this.state.password, type)
+    this.props.matchUserforLogin(this.state.username, this.state.password, type)
   }
 
   tourguideLoginFormHandler = (e) => {
