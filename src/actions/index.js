@@ -7,7 +7,11 @@ import {
 
 export const fetchDestinations = () => {
   return (dispatch) => {
-    fetch('http://localhost:3000/destinations')
+    fetch('http://localhost:3000/destinations', {
+      headers: {
+        'authorization' : localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(destinations => {
       dispatch({type: FETCH_DESTINATIONS, payload: destinations})
@@ -31,6 +35,7 @@ export const newUserSignUp = (newUser, type) => {
     .then(res => res.json())
     .then(response => {
       dispatch({type: SIGNUPUSER, payload: response})
+      localStorage.setItem('userType', userType)
       localStorage.setItem("token", response.token)
     })
   }
@@ -40,6 +45,7 @@ export const newUserSignUp = (newUser, type) => {
 export const login = (token, usertype) => {
   return dispatch => {
     fetch('http://localhost:3000/login', {
+      method: 'GET',
       headers: {
         'Authorization': token,
         'user': usertype
@@ -50,8 +56,7 @@ export const login = (token, usertype) => {
         if (data.errors) {
           alert(data.errors)
         } else {
-          // dispatch({ type: 'LOGINUSER', payload: data.user})
-          console.log(data);
+          dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: usertype}})
         }
       })
     }

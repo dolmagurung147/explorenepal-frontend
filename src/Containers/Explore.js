@@ -12,7 +12,7 @@ class Explore extends Component {
 
   render() {
     const destinationCards = this.props.destinations.map(destinationObj => {
-      return <DestinationCard key={destinationObj.id} destination={destinationObj}/>
+      return <DestinationCard key={destinationObj.id} destination={destinationObj} destinationChosen={this.props.destinationChosen}/>
     })
 
     return (

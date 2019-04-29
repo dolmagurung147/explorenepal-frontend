@@ -9,7 +9,7 @@ import MainContainer from './Containers/MainContainer'
 const App = () => {
   return (
       <BrowserRouter>
-      <MainContainer/>
+        <MainContainer/>
       </BrowserRouter>
     );
 
