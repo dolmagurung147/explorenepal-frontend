@@ -25,7 +25,6 @@ class Explore extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     destinations: state.destinations
   }

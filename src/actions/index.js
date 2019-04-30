@@ -16,7 +16,6 @@ export const fetchDestinations = () => {
     .then(res => res.json())
     .then(destinations => {
       dispatch({type: FETCH_DESTINATIONS, payload: destinations})
-      console.log(destinations);
     })
   }
 }
@@ -61,11 +60,9 @@ export const auto_login = (token, usertype) => {
         if (data.errors) {
           alert(data.errors)
         } else {
-          console.log(data);
-          dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: usertype}})
+          dispatch({ type: LOGINUSER, payload: {user:data.user, userType: usertype}})
         }
       })
-    console.log("hey there", usertype);
     }
   }
 

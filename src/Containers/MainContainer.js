@@ -17,12 +17,11 @@ class MainContainer extends Component {
     if (localStorage.getItem('token')){
       let token = localStorage.getItem('token')
       let userType = localStorage.getItem('userType')
-      this.setState({
-        loggedIn: true
-      })
+      // this.setState({
+      //   loggedIn: true
+      // })
       this.props.auto_login(token, userType)
     }
-    console.log(this.props.state);
   }
 
   // logout = () => {
