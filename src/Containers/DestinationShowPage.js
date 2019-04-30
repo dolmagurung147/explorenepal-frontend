@@ -22,7 +22,7 @@ class DestinationShowPage extends Component {
 
   booknow = () => {
     if (this.state.viewAppointmentForm) {
-      return <ViewAppointmentForm />
+      return <ViewAppointmentForm tourist_id={this.props.loggedInuserInfo.id} destination_id={this.props.chosenDestination.id}/>
     }
     else {
       return (
@@ -36,7 +36,7 @@ class DestinationShowPage extends Component {
       <div>
         <div>
           {this.props.chosenDestination.name}
-          {this.props.loggedIn ? this.booknow() : null}
+          {this.props.loggedIn && this.props.whoIsLoggedIn === 'tourist' ? this.booknow() : null}
           <img src={this.props.chosenDestination.destination_images[0].image} />
         </div>
         <div>

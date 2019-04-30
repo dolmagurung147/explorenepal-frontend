@@ -3,6 +3,9 @@ import { Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import Home from './Home'
 import NavBar from '../Components/NavBar'
+import MyAppointments from './MyAppointments'
+import MyProfile from './MyProfile'
+import PlacesIVisited from './PlacesIVisited'
 import * as actions from '../actions'
 
 import { connect } from 'react-redux'
@@ -36,11 +39,14 @@ class MainContainer extends Component {
   render(){
     return (
       <div>
-      <NavBar />
-      <Switch>
-      <Route exact path ="/home" render={()=> <Home / >}/>
-      <Route exact path="/login" render={()=> <Login />}/>
-      </Switch>
+        <NavBar />
+        <Switch>
+          <Route  path ="/home" render={()=> <Home / >}/>
+          <Route  path="/login" render={()=> <Login />}/>
+          <Route  path="/myAppointments" render={()=> <MyAppointments />}/>
+          <Route  path="/myProfile" render={()=> <MyProfile />}/>
+          <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
+        </Switch>
       </div>
     )
   }
