@@ -9,15 +9,32 @@ import { connect } from 'react-redux'
 
 class MainContainer extends Component {
 
+  // state = {
+  //   loggedIn: false
+  // }
+
   componentDidMount(){
-    // if (localStorage.getItem('token'))
-    // let token = localStorage.getItem('token').split(',')[0]
-    // let userType = localStorage.getItem('token').split(',')[1]
-    // this.props.login(token, userType)
+    if (localStorage.getItem('token')){
+      let token = localStorage.getItem('token')
+      let userType = localStorage.getItem('userType')
+      this.setState({
+        loggedIn: true
+      })
+      this.props.auto_login(token, userType)
+    }
+    console.log(this.props.state);
   }
 
+  // logout = () => {
+  //   localStorage.removeItem('token')
+  //   localStorage.removeItem('userType')
+  //   this.setState({
+  //     loggedIn: false
+  //   })
+  //   return <Login />
+  // }
+
   render(){
-    console.log(this.props.whoIsLoggedIn);
     return (
       <div>
       <NavBar />
@@ -30,4 +47,10 @@ class MainContainer extends Component {
   }
 }
 
-export default connect(null, actions)(MainContainer)
+const mapStateToProps = (state) => {
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps, actions)(MainContainer)

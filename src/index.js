@@ -19,11 +19,10 @@ const reducer = (state=initialState, action) => {
       return{...state, destinations: action.payload}
     case SIGNUPUSER:
       let currentUser = action.payload.tour_guide ? "tour_guide" : "tourist"
-      return{...state, loggedin: true, whoIsLoggedIn: currentUser, loggedInuserInfo: action.payload[currentUser]}
+      return{...state, loggedin: true, whoIsLoggedIn: currentUser, loggedInuserInfo: action.payload.user}
     case LOGINUSER:
-    debugger
       let userType = action.payload.userType
-      return{...state, loggedin: true, whoIsLoggedIn: userType, loggedInuserInfo: action.payload[userType]}
+      return{...state, loggedin: true, whoIsLoggedIn: userType, loggedInuserInfo: action.payload.user}
     default:
       return state
   }

@@ -46,7 +46,8 @@ class Login extends React.Component {
 
   tourguideLoginFormHandler = (e) => {
     e.preventDefault();
-    console.log("tour guide login form handler")
+    let type = this.state.touristLogin ? "tourist" : "tour_guide"
+    this.props.matchUserforLogin(this.state.username, this.state.password, type)
   }
 
   usernameOnchangeHandler = (e) =>{

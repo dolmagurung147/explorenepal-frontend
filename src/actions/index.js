@@ -46,29 +46,28 @@ export const newUserSignUp = (newUser, type) => {
 export const login = (user, type) => ({
   type: 'LOGINUSER', payload: {user: user, userType: type}
 })
-//
-// export const auto_login = (usertype) => {
-//   return dispatch => {
-//     fetch('http://localhost:3000/login', {
-//       method: 'GET',
-//       headers: {
-//         'authorization': localStorage.getItem('token'),
-//         'user': usertype
-//       }
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         if (data.errors) {
-//           alert(data.errors)
-//         } else {
-//           // console.log(data);
-//           dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: usertype}})
-//           // localStorage.setItem('userType', usertype)
-//           // localStorage.setItem("token", token)
-//         }
-//       })
-//     }
-//   }
+
+export const auto_login = (token, usertype) => {
+  return dispatch => {
+    fetch('http://localhost:3000/login', {
+      method: 'GET',
+      headers: {
+        'authorization': token,
+        'user': usertype
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          alert(data.errors)
+        } else {
+          console.log(data);
+          dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: usertype}})
+        }
+      })
+    console.log("hey there", usertype);
+    }
+  }
 
 export const matchUserforLogin = (username, password, type) => {
   return dispatch => {
