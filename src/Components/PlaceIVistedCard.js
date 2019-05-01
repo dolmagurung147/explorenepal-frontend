@@ -10,6 +10,7 @@ class PlaceIVistedCard extends Component{
     review: ''
   }
 
+
   rateDestinationHandler = (e) => {
     e.preventDefault();
     console.log("rating destination...");
@@ -39,6 +40,7 @@ class PlaceIVistedCard extends Component{
     )
   }
 
+  // ------------ Destination Rating -------------------
   destinationRatingChangeHandler = (e) => {
     console.log(e.target.value);
     this.setState({
@@ -53,7 +55,6 @@ class PlaceIVistedCard extends Component{
   }
 
   submitDReviewHandler = (e) => {
-    e.preventDefault();
     console.log(this.props.loggedInuserInfo);
     console.log(this.state);
     fetch('http://localhost:3000/destination_reviews', {
@@ -73,6 +74,34 @@ class PlaceIVistedCard extends Component{
     .then (res => res.json())
     .then (review => console.log(review))
   }
+  // ------------ End for destination rating ----------
+
+  // ------------ Tour Guide Rating -------------------
+
+  tourGuideRatingChangeHandler = (e) => {
+    this.setState({
+      rating: e.target.value
+    })
+  }
+
+  submitTGReviewHandler = (e) => {
+    fetch('http://localhost:3000/tour_guide_reviews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        tour_guide_review: {
+          tour_guide_id: this.props.tourGuide.id,
+          tourist_id: this.props.loggedInuserInfo.id,
+          rating: this.state.rating,
+          touristReview: this.state.review
+        }
+      })
+    })
+    .then (res => res.json())
+    .then (review => console.log(review))
+  }
 
   eitherReviewDestinationOrTourGuide = () => {
     if (this.state.reviewDestination) {
@@ -80,7 +109,7 @@ class PlaceIVistedCard extends Component{
         <div>
           {this.props.destination ? <><h1>{this.props.destination.name}</h1><br/><img src={this.props.destination.destination_images[0].image} alt=''/></> : null}
           <h2>RATING: </h2>
-          <select value={this.state.value} onChange={this.destinationRatingChangeHandler}>
+          <select value={this.state.rating} onChange={this.destinationRatingChangeHandler}>
             <option value="1">1 STAR</option>
             <option value="2">2 STAR</option>
             <option value="3">3 STAR</option>
@@ -90,6 +119,23 @@ class PlaceIVistedCard extends Component{
           <h2>Review: </h2>
           <input type='text' name='destinationReview' value={this.state.review} onChange={this.reviewChangeHandler}/>
           <button onClick={this.submitDReviewHandler}> SUBMIT </button>
+        </div>
+      )
+    } else if (this.state.reviewTourGuide) {
+      return (
+        <div>
+        {this.props.tourGuide ? <><h1>{this.props.tourGuide.name}</h1><br/><img src={this.props.tourGuide.profile_picture} alt=''/></> : null}
+        <h2>RATING: </h2>
+        <select value={this.state.rating} onChange={this.tourGuideRatingChangeHandler}>
+          <option value="1">1 STAR</option>
+          <option value="2">2 STAR</option>
+          <option value="3">3 STAR</option>
+          <option value="4">4 STAR</option>
+          <option value="5">5 STAR</option>
+        </select>
+        <h2>Review: </h2>
+        <input type='text' name='tourGuideReview' value={this.state.review} onChange={this.reviewChangeHandler}/>
+        <button onClick={this.submitTGReviewHandler}> SUBMIT </button>
         </div>
       )
     }
@@ -106,7 +152,8 @@ class PlaceIVistedCard extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    loggedInuserInfo: state.loggedInuserInfo
+    loggedInuserInfo: state.loggedInuserInfo,
+    allTourGuides: state.allTourGuides
   }
 }
 

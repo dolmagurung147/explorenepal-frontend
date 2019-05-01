@@ -14,7 +14,8 @@ import { FETCH_DESTINATIONS,
   ADDAPPOINTMENT,
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
-  FETCH_TOURISTS
+  FETCH_TOURISTS,
+  FETCH_TOURGUIDES
 } from './actions/types'
 import thunk from 'redux-thunk'
 

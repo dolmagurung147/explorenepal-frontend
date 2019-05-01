@@ -39,7 +39,7 @@ class PlacesIVisited extends Component {
     return this.props.placesIVisited.map(places => {
       let destination = this.findDestination(places.destination_id)
       let tourGuide = this.findTourGuide(places.tour_guide_id)
-       return <PlaceIVistedCard destination={destination} tourGuide={tourGuide} key={places.id}/>
+       return <PlaceIVistedCard destination={destination} tourGuide={tourGuide} appointment={places} key={places.id}/>
     })
   }
 
