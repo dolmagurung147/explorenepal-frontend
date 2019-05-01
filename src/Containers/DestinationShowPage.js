@@ -52,7 +52,15 @@ class DestinationShowPage extends Component {
         <div>
           <h2> Reviews and Rating: </h2>
           <p> Average Rating: {this.props.chosenDestination.avgrating}</p>
-          { /*WRITE DOWN REVIEWS*/}
+           {this.props.chosenDestination.reviews.map(reviewObj => {
+            return (
+              <div key={reviewObj.id}>
+                <h3> Reviewed By: {this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name}</h3>
+                Rating : {reviewObj.rating} <br/>
+                Review: {reviewObj.review}
+              </div>
+            )
+          })}
         </div>
       </div>
     )
@@ -63,7 +71,8 @@ const mapStateToProps = (state) => {
   return {
     loggedIn: state.loggedin,
     whoIsLoggedIn: state.whoIsLoggedIn,
-    loggedInuserInfo: state.loggedInuserInfo
+    loggedInuserInfo: state.loggedInuserInfo,
+    allTourists: state.allTourists
   }
 }
 

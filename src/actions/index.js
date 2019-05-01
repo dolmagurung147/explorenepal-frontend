@@ -1,5 +1,6 @@
 import {
   FETCH_DESTINATIONS,
+  FETCH_TOURISTS,
   LOGINUSER,
   SIGNUPUSER,
   UPDATEUSER,
@@ -152,6 +153,16 @@ export const editAppointment = (appointment_id, date_and_time) => {
     .then (res => res.json())
     .then (editedApp => {
       dispatch({type: EDITAPPOINTMENT, payload: editedApp})
+    })
+  }
+}
+
+export const fetch_tourists = () => {
+  return dispatch => {
+    fetch('http://localhost:3000/tourists')
+    .then (res => res.json())
+    .then (tourists => {
+      dispatch({type: FETCH_TOURISTS, payload: tourists})
     })
   }
 }
