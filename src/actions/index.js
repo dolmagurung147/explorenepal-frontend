@@ -4,7 +4,8 @@ import {
   SIGNUPUSER,
   UPDATEUSER,
   ADDAPPOINTMENT,
-  DELETEAPPOINTMENT
+  DELETEAPPOINTMENT,
+  EDITAPPOINTMENT
 } from './types'
 
 
@@ -133,6 +134,24 @@ export const deleteAppointment = (appointment_id) => {
     .then (deletedApp => {
       console.log(deletedApp)
       dispatch({type: DELETEAPPOINTMENT, payload: deletedApp.id})
+    })
+  }
+}
+
+export const editAppointment = (appointment_id, date_and_time) => {
+  return dispatch => {
+    fetch(`http://localhost:3000/appointments/${appointment_id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        date_and_time: date_and_time
+      })
+    })
+    .then (res => res.json())
+    .then (editedApp => {
+      dispatch({type: EDITAPPOINTMENT, payload: editedApp})
     })
   }
 }

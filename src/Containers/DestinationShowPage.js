@@ -37,7 +37,7 @@ class DestinationShowPage extends Component {
         <div>
           {this.props.chosenDestination.name}
           {this.props.loggedIn && this.props.whoIsLoggedIn === 'tourist' ? this.booknow() : null}
-          <img src={this.props.chosenDestination.destination_images[0].image} />
+          <img src={this.props.chosenDestination.destination_images[0].image} alt=''/>
         </div>
         <div>
           {this.destinationImages()}

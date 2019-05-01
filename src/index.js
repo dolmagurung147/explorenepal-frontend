@@ -7,7 +7,14 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux' //create a store
 import { Provider } from 'react-redux' //in order to provide state to other components
 
-import { FETCH_DESTINATIONS, LOGINUSER, SIGNUPUSER, UPDATEUSER, ADDAPPOINTMENT, DELETEAPPOINTMENT } from './actions/types'
+import { FETCH_DESTINATIONS,
+  LOGINUSER,
+  SIGNUPUSER,
+  UPDATEUSER,
+  ADDAPPOINTMENT,
+  DELETEAPPOINTMENT,
+  EDITAPPOINTMENT
+} from './actions/types'
 import thunk from 'redux-thunk'
 
 
@@ -28,8 +35,9 @@ const reducer = (state=initialState, action) => {
     case ADDAPPOINTMENT:
       return {...state, myAppointments: [...state.myAppointments, action.payload.newAppointment]}
     case DELETEAPPOINTMENT:
-    debugger
       return {...state, myAppointments: state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload)}
+    case EDITAPPOINTMENT:
+      return {...state, myAppointments: [...state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload.id), action.payload]}
     default:
       return state
   }

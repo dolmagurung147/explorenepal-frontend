@@ -32,7 +32,8 @@ class MyProfile extends Component {
     let updateData = {name: this.state.name,
       profile_picture: this.state.profile_picture,
       short_bio: this.state.short_bio,
-      username: this.state.username
+      username: this.state.username,
+      editButtonClicked: false
     }
     this.props.updateUserInfo(updateData, this.props.whoIsLoggedIn, this.props.userInfo.id)
   }
@@ -44,9 +45,10 @@ class MyProfile extends Component {
         name: this.props.userInfo.name,
         profile_picture: this.props.userInfo.profile_picture,
         username: this.props.userInfo.username,
-        short_bio: this.props.userInfo.short_bio
+        short_bio: this.props.userInfo.short_bio,
       })
     }
+
     return (
       <div>
         <h1>Edit My Profile </h1>
@@ -64,7 +66,7 @@ class MyProfile extends Component {
       <div>
         <h1>MY Profile </h1>
         <h1>{this.props.userInfo.name} </h1>
-        <img src={this.props.userInfo.profile_picture} />
+        <img src={this.props.userInfo.profile_picture} alt=''/>
         <p>Username : {this.props.userInfo.username}</p>
         <p>Short-Bio: {this.props.userInfo.short_bio}</p>
         <button onClick={this.editMyProfileHandler}> EDIT MY PROFILE </button>
