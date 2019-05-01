@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import ViewAppointmentForm from '../Components/ViewAppointmentForm'
+import * as actions from '../actions'
 
 class DestinationShowPage extends Component {
   state = {
@@ -29,6 +30,11 @@ class DestinationShowPage extends Component {
         <button onClick={this.viewAppointmentForm}> Book This Destination </button>
       )
     }
+  }
+
+  exploreBackButtonHandler = (e) => {
+    e.preventDefault();
+    this.props.viewEachDestinationPage(true)
   }
 
   render() {
@@ -62,6 +68,7 @@ class DestinationShowPage extends Component {
             )
           })}
         </div>
+        <button onClick={this.exploreBackButtonHandler}> BACK TO MAIN HOMEPAGE</button>
       </div>
     )
   }
@@ -76,4 +83,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(DestinationShowPage)
+export default connect(mapStateToProps, actions)(DestinationShowPage)

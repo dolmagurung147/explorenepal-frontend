@@ -103,6 +103,8 @@ class PlaceIVistedCard extends Component{
     .then (review => console.log(review))
   }
 
+  // ------------- END OF Tour Guide Rating----------------
+
   eitherReviewDestinationOrTourGuide = () => {
     if (this.state.reviewDestination) {
       return (

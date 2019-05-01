@@ -9,7 +9,6 @@ import DestinationShowPage from './DestinationShowPage'
 class Home extends Component {
 
   state = {
-    pageToRender: 'explore',
     chosenDestination: {}
   }
 
@@ -20,15 +19,15 @@ class Home extends Component {
   allDestinations = () => {
     return (
       <div>
-      <Explore destinationChosen={this.destinationChosen}/>
-      <TopDestinations />
+        <Explore destinationChosen={this.destinationChosen} />
+        <TopDestinations />
       </div>
     )
   }
 
   destinationChosen = (destination) => {
+    this.props.viewEachDestinationPage(false)
     this.setState({
-      pageToRender: 'destinationShowPage',
       chosenDestination: destination
     })
   }
@@ -36,11 +35,17 @@ class Home extends Component {
   render() {
     return (
       <div>
-      {this.state.pageToRender === 'explore'? this.allDestinations() : <DestinationShowPage chosenDestination={this.state.chosenDestination}/>}
+      {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage chosenDestination={this.state.chosenDestination}/>}
       </div>
     )
 
   }
 }
 
-export default connect(null, actions)(Home)
+const mapStateToProps = (state) =>{
+  return {
+    explorePageToRender: state.explorePageToRender
+  }
+}
+
+export default connect(mapStateToProps, actions)(Home)

@@ -6,7 +6,8 @@ import {
   UPDATEUSER,
   ADDAPPOINTMENT,
   DELETEAPPOINTMENT,
-  EDITAPPOINTMENT
+  EDITAPPOINTMENT,
+  TOGGLEEXPLOREPAGE
 } from './types'
 
 
@@ -164,5 +165,11 @@ export const fetch_tourists = () => {
     .then (tourists => {
       dispatch({type: FETCH_TOURISTS, payload: tourists})
     })
+  }
+}
+
+export const viewEachDestinationPage = (status) => {
+  return dispatch => {
+    dispatch({type: TOGGLEEXPLOREPAGE, payload: status })
   }
 }

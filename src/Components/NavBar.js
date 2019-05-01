@@ -7,17 +7,25 @@ const NavBar = (props) => {
     <div>
       <Link to="/home">Home </Link>
       <Link to="/login">Login/Logout </Link>
-      {props.loggedin ? loggedInNavBar() : null}
+      {props.loggedin ? loggedInNavBar(props) : null}
     </div>
   )
 }
 
-const loggedInNavBar = () => {
+const check = (props) => {
+  if (props.whoIsLoggedIn === 'tourist') {
+    return <Link to='/placesIVisited'> Places I have visited </Link>
+  }
+}
+
+// {props.whoIsLoggedIn === 'tourist' ?  : null}
+const loggedInNavBar = (props) => {
+  console.log(props);
   return (
     <div>
       <Link to='/myAppointments'> My Appointments </Link>
       <Link to='/myProfile'> My Profile </Link>
-      <Link to='/placesIVisited'> Places I have visited </Link>
+      {props.whoIsLoggedIn ? check(props) : null}
     </div>
   )
 }

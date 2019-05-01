@@ -15,7 +15,8 @@ import { FETCH_DESTINATIONS,
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
   FETCH_TOURISTS,
-  FETCH_TOURGUIDES
+  FETCH_TOURGUIDES,
+  TOGGLEEXPLOREPAGE
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -27,7 +28,8 @@ const initialState = {loggedin: false,
   myDestinations: {},
   myAppointments: [],
   placesIVisited:[],
-  allTourists: []
+  allTourists: [],
+  explorePageToRender: true
 }
 
 const reducer = (state=initialState, action) => {
@@ -62,6 +64,8 @@ const reducer = (state=initialState, action) => {
       return {...state, myAppointments: [...state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload.id), action.payload]}
     case FETCH_TOURISTS:
       return {...state, allTourists: action.payload}
+    case TOGGLEEXPLOREPAGE:
+      return {...state, explorePageToRender: action.payload}
     default:
       return state
   }
