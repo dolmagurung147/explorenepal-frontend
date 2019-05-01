@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 class MyAppointmentCard extends Component{
 
@@ -36,16 +37,21 @@ class MyAppointmentCard extends Component{
     }
   }
 
+  deleteAppointmentHandler = (e) => {
+    e.preventDefault()
+    this.props.deleteAppointment(this.props.myAppointment.id)
+  }
+
   individualAppointmentInfo = (destinationInfo, tourGuideInfo) => {
-    console.log(this.props);
-    console.log(this.props.myAppointment.date_and_time);
     return (
       <div>
-        {destinationInfo.name}
-        <img src={destinationInfo.destination_images[0].image} />
-        Date: {this.props.myAppointment.date_and_time.split('T')[0]}
-        Time: {this.props.myAppointment.date_and_time.split('T')[1]}
-        Assigned Tour Guide: {tourGuideInfo.name}
+        <h1>{destinationInfo.name}</h1> <br/>
+        <img src={destinationInfo.destination_images[0].image} />  <br/>
+        Date: {this.props.myAppointment.date_and_time.split('T')[0]} <br/>
+        Time: {this.props.myAppointment.date_and_time.split('T')[1]} <br/>
+        Assigned Tour Guide: {tourGuideInfo.name} <br/>
+        <button onClick={this.deleteAppointmentHandler}>Delete This Appointment </button> <br/>
+        <button>Edit This Appointment </button> <br/> <br/>
       </div>
     )
   }
@@ -67,4 +73,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MyAppointmentCard)
+export default connect(mapStateToProps, actions)(MyAppointmentCard)

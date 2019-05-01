@@ -3,7 +3,8 @@ import {
   LOGINUSER,
   SIGNUPUSER,
   UPDATEUSER,
-  ADDAPPOINTMENT
+  ADDAPPOINTMENT,
+  DELETEAPPOINTMENT
 } from './types'
 
 
@@ -120,5 +121,18 @@ export const updateUserInfo = (updatedInfo, type, user_id) => {
 export const addNewAppointment = (appointment) => {
   return dispatch => {
     dispatch({type: ADDAPPOINTMENT, payload: {newAppointment: appointment}})
+  }
+}
+
+export const deleteAppointment = (appointment_id) => {
+  return dispatch => {
+    fetch(`http://localhost:3000/appointments/${appointment_id}`, {
+      method: 'DELETE'
+    })
+    .then (res => res.json())
+    .then (deletedApp => {
+      console.log(deletedApp)
+      dispatch({type: DELETEAPPOINTMENT, payload: deletedApp.id})
+    })
   }
 }
