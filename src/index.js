@@ -18,7 +18,14 @@ import { FETCH_DESTINATIONS,
 import thunk from 'redux-thunk'
 
 
-const initialState = {loggedin: false, destinations: [], whoIsLoggedIn: null, loggedInuserInfo: {}, myDestinations: {}, myAppointments: []}
+const initialState = {loggedin: false,
+  destinations: [],
+  whoIsLoggedIn: null,
+  loggedInuserInfo: {},
+  myDestinations: {},
+  myAppointments: [],
+  placesIVisited:[],
+}
 
 const reducer = (state=initialState, action) => {
   switch (action.type){
@@ -26,10 +33,22 @@ const reducer = (state=initialState, action) => {
       return{...state, destinations: action.payload}
     case SIGNUPUSER:
       let currentUser = action.payload.tour_guide ? "tour_guide" : "tourist"
-      return{...state, loggedin: true, whoIsLoggedIn: currentUser, loggedInuserInfo: action.payload.user, myAppointments: action.payload.user.appointments}
+      return{...state,
+         loggedin: true,
+         whoIsLoggedIn: currentUser,
+         loggedInuserInfo: action.payload.user,
+         myAppointments: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()),
+         placesIVisited: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now())
+       }
     case LOGINUSER:
       let userType = action.payload.userType
-      return{...state, loggedin: true, whoIsLoggedIn: userType, loggedInuserInfo: action.payload.user , myAppointments: action.payload.user.appointments}
+      return{...state,
+        loggedin: true,
+        whoIsLoggedIn: userType,
+        loggedInuserInfo: action.payload.user ,
+        myAppointments: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()),
+        placesIVisited: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now())
+      }
     case UPDATEUSER:
       return{...state, loggedInuserInfo: action.payload.updatedinfo}
     case ADDAPPOINTMENT:

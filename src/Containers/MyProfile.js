@@ -62,6 +62,7 @@ class MyProfile extends Component {
   }
 
   showMyProfile = () => {
+    console.log(this.props.userInfo);
     return(
       <div>
         <h1>MY Profile </h1>
