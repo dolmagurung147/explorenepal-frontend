@@ -15,7 +15,6 @@ import { FETCH_DESTINATIONS,
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
   FETCH_TOURISTS,
-  FETCH_TOURGUIDES,
   TOGGLEEXPLOREPAGE
 } from './actions/types'
 import thunk from 'redux-thunk'
@@ -42,8 +41,6 @@ const reducer = (state=initialState, action) => {
          loggedin: true,
          whoIsLoggedIn: currentUser,
          loggedInuserInfo: action.payload.user,
-         myAppointments: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()),
-         placesIVisited: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now())
        }
     case LOGINUSER:
       let userType = action.payload.userType
@@ -51,8 +48,8 @@ const reducer = (state=initialState, action) => {
         loggedin: true,
         whoIsLoggedIn: userType,
         loggedInuserInfo: action.payload.user ,
-        myAppointments: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()),
-        placesIVisited: action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now())
+        myAppointments: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
+        placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : []
       }
     case UPDATEUSER:
       return{...state, loggedInuserInfo: action.payload.updatedinfo}

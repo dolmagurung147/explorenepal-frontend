@@ -1,8 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 import TouristSignup from '../Components/TouristSignup'
 import TourGuideSignup from '../Components/TourGuideSignup'
 
-import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 class Login extends React.Component {
@@ -42,12 +44,14 @@ class Login extends React.Component {
     e.preventDefault();
     let type = this.state.touristLogin ? "tourist" : "tour_guide"
     this.props.matchUserforLogin(this.state.username, this.state.password, type)
+    this.props.history.push('/home')
   }
 
   tourguideLoginFormHandler = (e) => {
     e.preventDefault();
     let type = this.state.touristLogin ? "tourist" : "tour_guide"
     this.props.matchUserforLogin(this.state.username, this.state.password, type)
+    this.props.history.push('/home')
   }
 
   usernameOnchangeHandler = (e) =>{
@@ -108,4 +112,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(null, actions )(Login)
+export default withRouter(connect(null, actions )(Login))

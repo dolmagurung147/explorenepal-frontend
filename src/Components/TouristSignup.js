@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import { withRouter } from 'react-router-dom'
+
 class TouristSignup extends React.Component {
 
   state = {
@@ -22,7 +24,8 @@ class TouristSignup extends React.Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
-    this.props.newUserSignUp(this.state, "tourist");
+    this.props.newUserSignUp(this.state, "tourist")
+    this.props.history.push('/home')
   }
 
   render() {
@@ -44,4 +47,4 @@ class TouristSignup extends React.Component {
   }
 }
 
-export default connect(null, actions )(TouristSignup)
+export default withRouter(connect(null, actions )(TouristSignup))

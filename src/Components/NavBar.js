@@ -18,9 +18,8 @@ const check = (props) => {
   }
 }
 
-// {props.whoIsLoggedIn === 'tourist' ?  : null}
+
 const loggedInNavBar = (props) => {
-  console.log(props);
   return (
     <div>
       <Link to='/myAppointments'> My Appointments </Link>

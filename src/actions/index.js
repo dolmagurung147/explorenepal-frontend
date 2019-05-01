@@ -10,15 +10,9 @@ import {
   TOGGLEEXPLOREPAGE
 } from './types'
 
-
 export const fetchDestinations = () => {
   return (dispatch) => {
-    fetch('http://localhost:3000/destinations', {
-      headers: {
-        'authorization' : localStorage.getItem('token'),
-        'user' : localStorage.getItem('userType')
-      }
-    })
+    fetch('http://localhost:3000/destinations')
     .then(res => res.json())
     .then(destinations => {
       dispatch({type: FETCH_DESTINATIONS, payload: destinations})
@@ -41,9 +35,9 @@ export const newUserSignUp = (newUser, type) => {
     })
     .then(res => res.json())
     .then(response => {
-      dispatch({type: SIGNUPUSER, payload: response})
       localStorage.setItem('userType', userType)
       localStorage.setItem("token", response.token)
+      dispatch({type: SIGNUPUSER, payload: response})
     })
   }
 }

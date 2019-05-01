@@ -6,10 +6,6 @@ import DestinationCard from '../Components/DestinationCard'
 
 class Explore extends Component {
 
-  componentDidMount() {
-    this.props.fetchDestinations();
-  }
-
   render() {
     const destinationCards = this.props.destinations.map(destinationObj => {
       return <DestinationCard key={destinationObj.id} destination={destinationObj} destinationChosen={this.props.destinationChosen}/>

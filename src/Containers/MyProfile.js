@@ -36,6 +36,9 @@ class MyProfile extends Component {
       editButtonClicked: false
     }
     this.props.updateUserInfo(updateData, this.props.whoIsLoggedIn, this.props.userInfo.id)
+    this.setState({
+      editButtonClicked:false
+    })
   }
 
   editMyProfile = () => {
@@ -62,7 +65,7 @@ class MyProfile extends Component {
   }
 
   showMyProfile = () => {
-    console.log(this.props.userInfo);
+    console.log(this.props);
     return(
       <div>
         <h1>MY Profile </h1>
