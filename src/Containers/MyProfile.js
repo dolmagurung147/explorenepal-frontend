@@ -1,29 +1,60 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 class MyProfile extends Component {
 
   state = {
     editButtonClicked: false,
-    name: this.props.userInfo.name,
-    profile_picture: this.props.userInfo.profile_picture,
-    username: this.props.userInfo.username,
-    short_bio: this.props.userInfo.short_bio
+    name: '',
+    profile_picture: '',
+    username: '',
+    short_bio: '',
+    haveUserInfo: false
   }
+
 
   editMyProfileHandler = (e) => {
     e.preventDefault();
-    console.log("hey there Hakuna Matata");
     this.setState({
       editButtonClicked: true
     })
   }
 
+  userInfoChangeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  saveEditButtonClickHandler = (e) => {
+    e.preventDefault();
+    let updateData = {name: this.state.name,
+      profile_picture: this.state.profile_picture,
+      short_bio: this.state.short_bio,
+      username: this.state.username
+    }
+    this.props.updateUserInfo(updateData, this.props.whoIsLoggedIn, this.props.userInfo.id)
+  }
+
   editMyProfile = () => {
+    if (!this.state.haveUserInfo) {
+      this.setState({
+        haveUserInfo: true,
+        name: this.props.userInfo.name,
+        profile_picture: this.props.userInfo.profile_picture,
+        username: this.props.userInfo.username,
+        short_bio: this.props.userInfo.short_bio
+      })
+    }
     return (
       <div>
         <h1>Edit My Profile </h1>
-        Name: <input type="text" value={this.state.name}/>
+        Name: <input type="text" value={this.state.name} name='name' onChange={this.userInfoChangeHandler}/>
+        Profile Picture: <input type="text" value={this.state.profile_picture} name='profile_picture' onChange={this.userInfoChangeHandler}/>
+        Username: <input type="text" value={this.state.username} name='username' onChange={this.userInfoChangeHandler}/>
+        Short Bio: <input type="text" value={this.state.short_bio} name='short_bio' onChange={this.userInfoChangeHandler}/>
+        <button onClick={this.saveEditButtonClickHandler}>Save</button>
       </div>
     )
   }
@@ -57,4 +88,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MyProfile)
+export default connect(mapStateToProps, actions)(MyProfile)

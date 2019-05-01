@@ -1,7 +1,9 @@
 import {
   FETCH_DESTINATIONS,
   LOGINUSER,
-  SIGNUPUSER
+  SIGNUPUSER,
+  UPDATEUSER,
+  ADDAPPOINTMENT
 } from './types'
 
 
@@ -89,6 +91,34 @@ export const matchUserforLogin = (username, password, type) => {
         dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: type}})
       }
     })
+  }
+}
 
+export const updateUserInfo = (updatedInfo, type, user_id) => {
+  return dispatch => {
+    fetch(`http://localhost:3000/${type}s/${user_id}` , {
+      method: 'PATCH',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        [type]: {
+          name: updatedInfo.name,
+          profile_picture: updatedInfo.profile_picture,
+          username: updatedInfo.username,
+          short_bio: updatedInfo.short_bio
+        }
+      })
+    })
+    .then (res => res.json())
+    .then (user => {
+      dispatch({type: UPDATEUSER, payload: {updatedinfo: user}})
+    })
+  }
+}
+
+export const addNewAppointment = (appointment) => {
+  return dispatch => {
+    dispatch({type: ADDAPPOINTMENT, payload: {newAppointment: appointment}})
   }
 }

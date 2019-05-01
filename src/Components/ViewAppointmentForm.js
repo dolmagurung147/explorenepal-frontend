@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 
 class ViewAppointmentForm extends Component {
   state = {
@@ -65,7 +67,7 @@ class ViewAppointmentForm extends Component {
       })
     })
     .then (res => res.json())
-    .then (newAppointment => console.log(newAppointment))
+    .then (newAppointment => this.props.addNewAppointment(newAppointment))
     this.setState({
       selectedTourGuide: '',
       selectedDate: '',
@@ -90,4 +92,4 @@ class ViewAppointmentForm extends Component {
   }
 }
 
-export default ViewAppointmentForm
+export default connect(null, actions)(ViewAppointmentForm)

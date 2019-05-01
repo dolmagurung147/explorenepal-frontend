@@ -7,11 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux' //create a store
 import { Provider } from 'react-redux' //in order to provide state to other components
 
-import { FETCH_DESTINATIONS, LOGINUSER, SIGNUPUSER } from './actions/types'
+import { FETCH_DESTINATIONS, LOGINUSER, SIGNUPUSER, UPDATEUSER, ADDAPPOINTMENT } from './actions/types'
 import thunk from 'redux-thunk'
 
 
-const initialState = {loggedin: false, destinations: [], whoIsLoggedIn: null, loggedInuserInfo: {}}
+const initialState = {loggedin: false, destinations: [], whoIsLoggedIn: null, loggedInuserInfo: {}, myDestinations: {}, myAppointments: []}
 
 const reducer = (state=initialState, action) => {
   switch (action.type){
@@ -19,10 +19,15 @@ const reducer = (state=initialState, action) => {
       return{...state, destinations: action.payload}
     case SIGNUPUSER:
       let currentUser = action.payload.tour_guide ? "tour_guide" : "tourist"
-      return{...state, loggedin: true, whoIsLoggedIn: currentUser, loggedInuserInfo: action.payload.user}
+      return{...state, loggedin: true, whoIsLoggedIn: currentUser, loggedInuserInfo: action.payload.user, myAppointments: action.payload.user.appointments}
     case LOGINUSER:
       let userType = action.payload.userType
-      return{...state, loggedin: true, whoIsLoggedIn: userType, loggedInuserInfo: action.payload.user}
+      return{...state, loggedin: true, whoIsLoggedIn: userType, loggedInuserInfo: action.payload.user , myAppointments: action.payload.user.appointments}
+    case UPDATEUSER:
+      return{...state, loggedInuserInfo: action.payload.updatedinfo}
+    case ADDAPPOINTMENT:
+    debugger
+      return {...state, myAppointments: [...state.myAppointments, action.payload.newAppointment]}
     default:
       return state
   }
