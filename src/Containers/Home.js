@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 import { withLastLocation } from 'react-router-last-location';
 
 import Explore from './Explore'
@@ -11,7 +12,6 @@ class Home extends Component {
   state = {
     chosenDestination: {}
   }
-
 
   allDestinations = () => {
     return (
@@ -46,4 +46,4 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default withLastLocation(connect(mapStateToProps)(Home))
+export default withLastLocation(connect(mapStateToProps, actions)(Home))
