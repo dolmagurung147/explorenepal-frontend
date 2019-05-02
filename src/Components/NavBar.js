@@ -1,16 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+
+import * as actions from '../actions'
 
 const NavBar = (props) => {
   return (
     <div>
       <Link to="/home">Home </Link>
-      <Link to="/login">Login/Logout </Link>
+      {props.loggedin ? <Link to='/home' onClick={() => logOut(props)}> Logout </Link> : <Link to="/login">Login/Signup</Link>}
       {props.loggedin ? loggedInNavBar(props) : null}
     </div>
   )
 }
+
+const logOut = (props) => {
+  localStorage.removeItem('token')
+  localStorage.removeItem('userType')
+  props.logout()
+}
+
 
 const check = (props) => {
   if (props.whoIsLoggedIn === 'tourist') {
@@ -37,4 +46,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, actions)(NavBar))

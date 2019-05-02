@@ -15,12 +15,14 @@ import { FETCH_DESTINATIONS,
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
   FETCH_TOURISTS,
-  TOGGLEEXPLOREPAGE
+  TOGGLEEXPLOREPAGE,
+  LOGOUT
 } from './actions/types'
 import thunk from 'redux-thunk'
 
 
-const initialState = {loggedin: false,
+const initialState = {
+  loggedin: false,
   destinations: [],
   whoIsLoggedIn: null,
   loggedInuserInfo: {},
@@ -63,6 +65,17 @@ const reducer = (state=initialState, action) => {
       return {...state, allTourists: action.payload}
     case TOGGLEEXPLOREPAGE:
       return {...state, explorePageToRender: action.payload}
+    case LOGOUT:
+      return {
+        ...state,
+      loggedin: false,
+      whoIsLoggedIn: null,
+      loggedInuserInfo: {},
+      myDestinations: {},
+      myAppointments: [],
+      placesIVisited:[],
+      allTourists: [],
+      explorePageToRender: true}
     default:
       return state
   }

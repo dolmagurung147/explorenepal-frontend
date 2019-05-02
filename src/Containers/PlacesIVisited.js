@@ -43,12 +43,20 @@ class PlacesIVisited extends Component {
     })
   }
 
+  noPlaceVisited = () => {
+    return (
+      <div>
+        <h2> No places in Nepal visited yet </h2>
+      </div>
+    )
+  }
+
   render() {
     return (
       <>
       <h1>PLACES I VISITED </h1>
       <div>
-      {this.individualCardPlace()}
+      {this.props.placesIVisited.length > 0 ? this.individualCardPlace() : this.noPlaceVisited()}
       </div>
       </>
     )

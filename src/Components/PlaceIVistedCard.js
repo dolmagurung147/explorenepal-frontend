@@ -13,7 +13,6 @@ class PlaceIVistedCard extends Component{
 
   rateDestinationHandler = (e) => {
     e.preventDefault();
-    console.log("rating destination...");
     this.setState({
       reviewDestination: true,
       reviewTourGuide: false

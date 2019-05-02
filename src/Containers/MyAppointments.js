@@ -12,10 +12,18 @@ const MyAppointments = (props) => {
       )
   }
 
+  const noAppointmentYet = () => {
+    return (
+      <div>
+        <h1> No appointment yet </h1>
+      </div>
+    )
+  }
+
   return (
     <div>
       <h1>MY APPOINTMENTS </h1>
-      {myAppointmentCards()}
+      {props.myAppointments.length > 0 ?  myAppointmentCards() : noAppointmentYet() }
     </div>
   )
 }

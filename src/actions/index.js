@@ -7,7 +7,8 @@ import {
   ADDAPPOINTMENT,
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
-  TOGGLEEXPLOREPAGE
+  TOGGLEEXPLOREPAGE,
+  LOGOUT
 } from './types'
 
 export const fetchDestinations = () => {
@@ -83,7 +84,6 @@ export const matchUserforLogin = (username, password, type) => {
       if (data.errors) {
         alert(data.errors)
       } else {
-        console.log(data);
         localStorage.setItem('token', data.token)
         localStorage.setItem('userType', type)
         dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: type}})
@@ -128,7 +128,6 @@ export const deleteAppointment = (appointment_id) => {
     })
     .then (res => res.json())
     .then (deletedApp => {
-      console.log(deletedApp)
       dispatch({type: DELETEAPPOINTMENT, payload: deletedApp.id})
     })
   }
@@ -165,5 +164,11 @@ export const fetch_tourists = () => {
 export const viewEachDestinationPage = (status) => {
   return dispatch => {
     dispatch({type: TOGGLEEXPLOREPAGE, payload: status })
+  }
+}
+
+export const logout = () => {
+  return dispatch => {
+    dispatch({type: LOGOUT})
   }
 }

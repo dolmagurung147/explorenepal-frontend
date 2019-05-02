@@ -60,7 +60,6 @@ class MyAppointmentCard extends Component{
 
   saveEditedAppointmentHandler = (e) => {
     e.preventDefault()
-    console.log(this.props.myAppointment);
     let date_and_time = `${this.state.editedDate} ${this.state.editedTime}`
     this.props.editAppointment(this.props.myAppointment.id, date_and_time)
   }

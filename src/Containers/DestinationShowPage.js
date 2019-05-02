@@ -38,6 +38,7 @@ class DestinationShowPage extends Component {
   }
 
   render() {
+    console.log(this.props.chosenDestination);
     return (
       <div>
         <div>
