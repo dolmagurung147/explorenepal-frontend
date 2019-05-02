@@ -13,9 +13,9 @@ import { FETCH_DESTINATIONS,
   ADDAPPOINTMENT,
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
-  FETCH_TOURISTS,
   TOGGLEEXPLOREPAGE,
-  LOGOUT
+  LOGOUT,
+  SETCHOSENDESTINATION
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -30,7 +30,8 @@ const initialState = {
   placesIVisited:[],
   allTourists: [],
   explorePageToRender: true,
-  whichPageTorenderOnBackButton: '/home'
+  whichPageTorenderOnBackButton: '/home',
+  chosenDestination: {}
 }
 
 const reducer = (state=initialState, action) => {
@@ -43,6 +44,8 @@ const reducer = (state=initialState, action) => {
          loggedin: true,
          whoIsLoggedIn: currentUser,
          loggedInuserInfo: action.payload.user,
+         myAppointments: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
+         placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : []
        }
     case LOGINUSER:
       let userType = action.payload.userType
@@ -61,8 +64,6 @@ const reducer = (state=initialState, action) => {
       return {...state, myAppointments: state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload)}
     case EDITAPPOINTMENT:
       return {...state, myAppointments: [...state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload.id), action.payload]}
-    case FETCH_TOURISTS:
-      return {...state, allTourists: action.payload}
     case TOGGLEEXPLOREPAGE:
       return {...state, explorePageToRender: action.payload}
     case LOGOUT:
@@ -76,6 +77,8 @@ const reducer = (state=initialState, action) => {
       placesIVisited:[],
       allTourists: [],
       explorePageToRender: true}
+    case SETCHOSENDESTINATION:
+      return {...state, chosenDestination: action.payload}
     default:
       return state
   }

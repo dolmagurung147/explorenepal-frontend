@@ -80,7 +80,8 @@ const mapStateToProps = (state) => {
     loggedIn: state.loggedin,
     whoIsLoggedIn: state.whoIsLoggedIn,
     loggedInuserInfo: state.loggedInuserInfo,
-    allTourists: state.allTourists
+    allTourists: state.allTourists,
+    chosenDestination: state.chosenDestination
   }
 }
 

@@ -9,9 +9,6 @@ import DestinationShowPage from './DestinationShowPage'
 
 class Home extends Component {
 
-  state = {
-    chosenDestination: {}
-  }
 
   allDestinations = () => {
     return (
@@ -24,16 +21,14 @@ class Home extends Component {
 
   destinationChosen = (destination) => {
     this.props.viewEachDestinationPage(false)
-    this.setState({
-      chosenDestination: destination
-    })
+    this.props.setChosenDestination(destination)
   }
 
   render() {
     console.log(JSON.stringify(this.props.lastLocation));
     return (
       <div>
-      {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage chosenDestination={this.state.chosenDestination}/>}
+      {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage/>}
       </div>
     )
 
@@ -42,7 +37,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) =>{
   return {
-    explorePageToRender: state.explorePageToRender
+    explorePageToRender: state.explorePageToRender,
+    chosenDestination: state.chosenDestination
   }
 }
 

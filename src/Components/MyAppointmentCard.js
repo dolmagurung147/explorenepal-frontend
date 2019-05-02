@@ -6,6 +6,7 @@ class MyAppointmentCard extends Component{
 
   state = {
     allTourGuides: [],
+    allTourists: [],
     editButtonClicked: false,
     editedDate: this.props.myAppointment.date_and_time.split('T')[0],
     editedTime: this.props.myAppointment.date_and_time.split('T')[1].split('.')[0]
@@ -16,6 +17,12 @@ class MyAppointmentCard extends Component{
     .then(res => res.json())
     .then(tour_guides => this.setState({
         allTourGuides: tour_guides
+      })
+    )
+    fetch('http://localhost:3000/tourists')
+    .then(res => res.json())
+    .then(tourists => this.setState({
+        allTourists: tourists
       })
     )
   }
@@ -41,9 +48,9 @@ class MyAppointmentCard extends Component{
   }
 
   findTourist = () => {
-    if (this.props.tourists.length > 0) {
+    if (this.state.allTourists.length > 0) {
       return(
-        this.props.tourists.find(tourist => {
+        this.state.allTourists.find(tourist => {
           return tourist.id === this.props.myAppointment.tourist_id
         })
       )
@@ -72,6 +79,9 @@ class MyAppointmentCard extends Component{
     e.preventDefault()
     let date_and_time = `${this.state.editedDate} ${this.state.editedTime}`
     this.props.editAppointment(this.props.myAppointment.id, date_and_time)
+    this.setState({
+      editButtonClicked: false
+    })
   }
 
   individualAppointmentInfo = (destinationInfo, userInfo) => {
@@ -102,6 +112,8 @@ class MyAppointmentCard extends Component{
   }
 
   render(){
+    console.log('tourist', this.props.tourists);
+    console.log('destination', this.props.destinations);
     if (this.props.whoIsLoggedIn === 'tourist') {
       return (
         <div>
@@ -120,10 +132,10 @@ class MyAppointmentCard extends Component{
 
 
 const mapStateToProps = (state) => {
+  console.log("WE ARE LOGGING STATE HERE",state);
   return {
     destinations: state.destinations,
     whoIsLoggedIn: state.whoIsLoggedIn,
-    tourists: state.allTourists,
     state: state
   }
 }

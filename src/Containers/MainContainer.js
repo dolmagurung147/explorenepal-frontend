@@ -8,6 +8,7 @@ import NavBar from '../Components/NavBar'
 import MyAppointments from './MyAppointments'
 import MyProfile from './MyProfile'
 import PlacesIVisited from './PlacesIVisited'
+import TouristsGuided from './TouristsGuided'
 import * as actions from '../actions'
 
 import { connect } from 'react-redux'
@@ -36,6 +37,7 @@ class MainContainer extends Component {
           <Route  path="/myAppointments" render={()=> <MyAppointments />}/>
           <Route  path="/myProfile" render={()=> <MyProfile />}/>
           <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
+          <Route  path="/touristsGuided" render={()=> <TouristsGuided />}/>
           <Route  path="/" render={()=> <MainPage />}/>
         </Switch>
         </LastLocationProvider>

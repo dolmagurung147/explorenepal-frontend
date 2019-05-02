@@ -1,6 +1,5 @@
 import {
   FETCH_DESTINATIONS,
-  FETCH_TOURISTS,
   LOGINUSER,
   SIGNUPUSER,
   UPDATEUSER,
@@ -8,7 +7,8 @@ import {
   DELETEAPPOINTMENT,
   EDITAPPOINTMENT,
   TOGGLEEXPLOREPAGE,
-  LOGOUT
+  LOGOUT,
+  SETCHOSENDESTINATION
 } from './types'
 
 export const fetchDestinations = () => {
@@ -43,9 +43,6 @@ export const newUserSignUp = (newUser, type) => {
   }
 }
 
-export const login = (user, type) => ({
-  type: 'LOGINUSER', payload: {user: user, userType: type}
-})
 
 export const auto_login = (token, usertype) => {
   return dispatch => {
@@ -86,7 +83,7 @@ export const matchUserforLogin = (username, password, type) => {
       } else {
         localStorage.setItem('token', data.token)
         localStorage.setItem('userType', type)
-        dispatch({ type: 'LOGINUSER', payload: {user:data.user, userType: type}})
+        dispatch({ type: LOGINUSER, payload: {user:data.user, userType: type}})
       }
     })
   }
@@ -151,15 +148,16 @@ export const editAppointment = (appointment_id, date_and_time) => {
   }
 }
 
-export const fetch_tourists = () => {
-  return dispatch => {
-    fetch('http://localhost:3000/tourists')
-    .then (res => res.json())
-    .then (tourists => {
-      dispatch({type: FETCH_TOURISTS, payload: tourists})
-    })
-  }
-}
+// export const fetchTourists = () => {
+//   debugger
+//   return dispatch => {
+//     fetch('http://localhost:3000/tourists')
+//     .then (res => res.json())
+//     .then (tourists => {
+//       dispatch({type: FETCH_TOURISTS, payload: tourists})
+//     })
+//   }
+// }
 
 export const viewEachDestinationPage = (status) => {
   return dispatch => {
@@ -170,5 +168,11 @@ export const viewEachDestinationPage = (status) => {
 export const logout = () => {
   return dispatch => {
     dispatch({type: LOGOUT})
+  }
+}
+
+export const setChosenDestination = (chosenDest) => {
+  return dispatch => {
+    dispatch({type: SETCHOSENDESTINATION, payload: chosenDest})
   }
 }
