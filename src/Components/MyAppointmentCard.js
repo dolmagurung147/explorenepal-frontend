@@ -40,6 +40,16 @@ class MyAppointmentCard extends Component{
     }
   }
 
+  findTourist = () => {
+    if (this.props.tourists.length > 0) {
+      return(
+        this.props.tourists.find(tourist => {
+          return tourist.id === this.props.myAppointment.tourist_id
+        })
+      )
+    }
+  }
+
   deleteAppointmentHandler = (e) => {
     e.preventDefault()
     this.props.deleteAppointment(this.props.myAppointment.id)
@@ -64,7 +74,7 @@ class MyAppointmentCard extends Component{
     this.props.editAppointment(this.props.myAppointment.id, date_and_time)
   }
 
-  individualAppointmentInfo = (destinationInfo, tourGuideInfo) => {
+  individualAppointmentInfo = (destinationInfo, userInfo) => {
     if (this.state.editButtonClicked) {
       return (
         <div>
@@ -72,7 +82,7 @@ class MyAppointmentCard extends Component{
           <img src={destinationInfo.destination_images[0].image} alt=''/>  <br/>
           Date: <input type='date' value={this.state.editedDate} name='editedDate' onChange={this.dateAndTimeChangeHandler}/> <br/>
           Time: <input type='time' value={this.state.editedTime} name='editedTime' onChange={this.dateAndTimeChangeHandler}/> <br/>
-          Assigned Tour Guide: {tourGuideInfo.name} <br/>
+          {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name} </p>} <br/>
           <button onClick={this.saveEditedAppointmentHandler}>Save Changes </button> <br/> <br/>
         </div>
       )
@@ -83,7 +93,7 @@ class MyAppointmentCard extends Component{
           <img src={destinationInfo.destination_images[0].image} alt=''/>  <br/>
           Date: {this.props.myAppointment.date_and_time.split('T')[0]} <br/>
           Time: {this.props.myAppointment.date_and_time.split('T')[1]} <br/>
-          Assigned Tour Guide: {tourGuideInfo.name} <br/>
+          {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name}</p>} <br/>
           <button onClick={this.deleteAppointmentHandler}>Delete This Appointment </button> <br/>
           <button onClick={this.editAppointmentHandler}>Edit This Appointment </button> <br/> <br/>
         </div>
@@ -92,11 +102,19 @@ class MyAppointmentCard extends Component{
   }
 
   render(){
-    return (
-      <div>
-        {this.findDestination() && this.findTourGuide() ? this.individualAppointmentInfo(this.findDestination(), this.findTourGuide() ) : null}
-      </div>
-    )
+    if (this.props.whoIsLoggedIn === 'tourist') {
+      return (
+        <div>
+          {this.findDestination() && this.findTourGuide() ? this.individualAppointmentInfo(this.findDestination(), this.findTourGuide() ) : null}
+        </div>
+      )
+    } else if (this.props.whoIsLoggedIn === 'tour_guide') {
+      return (
+        <div>
+          {this.findDestination() && this.findTourist() ? this.individualAppointmentInfo(this.findDestination(), this.findTourist()) : null}
+        </div>
+      )
+    }
   }
 }
 
@@ -104,6 +122,8 @@ class MyAppointmentCard extends Component{
 const mapStateToProps = (state) => {
   return {
     destinations: state.destinations,
+    whoIsLoggedIn: state.whoIsLoggedIn,
+    tourists: state.allTourists,
     state: state
   }
 }

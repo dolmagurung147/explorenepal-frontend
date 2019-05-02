@@ -11,6 +11,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchDestinations();
+    this.props.fetch_tourists();
   }
 
   render() {

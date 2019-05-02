@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
 import { createStore, applyMiddleware } from 'redux' //create a store
 import { Provider } from 'react-redux' //in order to provide state to other components
 
@@ -30,7 +29,8 @@ const initialState = {
   myAppointments: [],
   placesIVisited:[],
   allTourists: [],
-  explorePageToRender: true
+  explorePageToRender: true,
+  whichPageTorenderOnBackButton: '/home'
 }
 
 const reducer = (state=initialState, action) => {

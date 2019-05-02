@@ -11,8 +11,10 @@ import PlacesIVisited from './PlacesIVisited'
 import * as actions from '../actions'
 
 import { connect } from 'react-redux'
+import { LastLocationProvider } from 'react-router-last-location';
 
 class MainContainer extends Component {
+
 
   componentDidMount(){
     if (localStorage.getItem('token')){
@@ -22,9 +24,11 @@ class MainContainer extends Component {
     }
   }
 
+
   render(){
     return (
       <div>
+        <LastLocationProvider >
         <NavBar />
         <Switch>
           <Route  path ="/home" render={()=> <Home / >}/>
@@ -34,6 +38,7 @@ class MainContainer extends Component {
           <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
           <Route  path="/" render={()=> <MainPage />}/>
         </Switch>
+        </LastLocationProvider>
       </div>
     )
   }

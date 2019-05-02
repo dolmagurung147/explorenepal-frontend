@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { withLastLocation } from 'react-router-last-location';
 
 import Explore from './Explore'
 import TopDestinations from './TopDestinations'
@@ -12,9 +12,6 @@ class Home extends Component {
     chosenDestination: {}
   }
 
-  componentDidMount() {
-    this.props.fetch_tourists();
-  }
 
   allDestinations = () => {
     return (
@@ -33,6 +30,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.props.lastLocation));
     return (
       <div>
       {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage chosenDestination={this.state.chosenDestination}/>}
@@ -48,4 +46,4 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps, actions)(Home)
+export default withLastLocation(connect(mapStateToProps)(Home))
