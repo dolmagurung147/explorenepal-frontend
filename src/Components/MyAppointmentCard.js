@@ -5,26 +5,9 @@ import * as actions from '../actions'
 class MyAppointmentCard extends Component{
 
   state = {
-    allTourGuides: [],
-    allTourists: [],
     editButtonClicked: false,
     editedDate: this.props.myAppointment.date_and_time.split('T')[0],
     editedTime: this.props.myAppointment.date_and_time.split('T')[1].split('.')[0]
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:3000/tour_guides')
-    .then(res => res.json())
-    .then(tour_guides => this.setState({
-        allTourGuides: tour_guides
-      })
-    )
-    fetch('http://localhost:3000/tourists')
-    .then(res => res.json())
-    .then(tourists => this.setState({
-        allTourists: tourists
-      })
-    )
   }
 
   findDestination = () => {
@@ -38,9 +21,9 @@ class MyAppointmentCard extends Component{
   }
 
   findTourGuide = () => {
-    if (this.state.allTourGuides.length > 0) {
+    if (this.props.allTourGuides.length > 0) {
       return(
-        this.state.allTourGuides.find(tourGuide => {
+        this.props.allTourGuides.find(tourGuide => {
           return tourGuide.id === this.props.myAppointment.tour_guide_id
         })
       )
@@ -48,9 +31,9 @@ class MyAppointmentCard extends Component{
   }
 
   findTourist = () => {
-    if (this.state.allTourists.length > 0) {
+    if (this.props.allTourists.length > 0) {
       return(
-        this.state.allTourists.find(tourist => {
+        this.props.allTourists.find(tourist => {
           return tourist.id === this.props.myAppointment.tourist_id
         })
       )
@@ -112,8 +95,6 @@ class MyAppointmentCard extends Component{
   }
 
   render(){
-    console.log('tourist', this.props.tourists);
-    console.log('destination', this.props.destinations);
     if (this.props.whoIsLoggedIn === 'tourist') {
       return (
         <div>
@@ -132,11 +113,11 @@ class MyAppointmentCard extends Component{
 
 
 const mapStateToProps = (state) => {
-  console.log("WE ARE LOGGING STATE HERE",state);
   return {
     destinations: state.destinations,
     whoIsLoggedIn: state.whoIsLoggedIn,
-    state: state
+    allTourGuides: state.allTourGuides,
+    allTourists: state.allTourists,
   }
 }
 

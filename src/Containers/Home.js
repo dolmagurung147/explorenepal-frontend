@@ -25,7 +25,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.props.lastLocation));
+    // console.log(JSON.stringify(this.props.lastLocation));
     return (
       <div>
       {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage/>}

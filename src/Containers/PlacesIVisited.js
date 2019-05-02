@@ -4,18 +4,18 @@ import PlaceIVistedCard from '../Components/PlaceIVistedCard'
 
 class PlacesIVisited extends Component {
 
-  state = {
-    allTourGuides: []
-  }
+  // state = {
+  //   allTourGuides: []
+  // }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/tour_guides')
-    .then(res => res.json())
-    .then(tour_guides => this.setState({
-        allTourGuides: tour_guides
-      })
-    )
-  }
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/tour_guides')
+  //   .then(res => res.json())
+  //   .then(tour_guides => this.setState({
+  //       allTourGuides: tour_guides
+  //     })
+  //   )
+  // }
 
   findDestination = (destination_id) => {
     if (this.props.destinations.length > 0) {
@@ -29,7 +29,7 @@ class PlacesIVisited extends Component {
 
   findTourGuide = (tourGuide_id) => {
       return(
-        this.state.allTourGuides.find(tour_guide => {
+        this.props.allTourGuides.find(tour_guide => {
           return tour_guide.id === tourGuide_id
         })
       )
@@ -67,6 +67,7 @@ const mapStateToProps = (state) => {
   return {
     placesIVisited: state.placesIVisited,
     destinations: state.destinations,
+    allTourGuides: state.allTourGuides,
     state: state
   }
 }

@@ -8,7 +8,9 @@ import {
   EDITAPPOINTMENT,
   TOGGLEEXPLOREPAGE,
   LOGOUT,
-  SETCHOSENDESTINATION
+  SETCHOSENDESTINATION,
+  FETCHALLTOURGUIDES,
+  FETCHALLTOURISTS
 } from './types'
 
 export const fetchDestinations = () => {
@@ -148,16 +150,6 @@ export const editAppointment = (appointment_id, date_and_time) => {
   }
 }
 
-// export const fetchTourists = () => {
-//   debugger
-//   return dispatch => {
-//     fetch('http://localhost:3000/tourists')
-//     .then (res => res.json())
-//     .then (tourists => {
-//       dispatch({type: FETCH_TOURISTS, payload: tourists})
-//     })
-//   }
-// }
 
 export const viewEachDestinationPage = (status) => {
   return dispatch => {
@@ -174,5 +166,25 @@ export const logout = () => {
 export const setChosenDestination = (chosenDest) => {
   return dispatch => {
     dispatch({type: SETCHOSENDESTINATION, payload: chosenDest})
+  }
+}
+
+export const fetchAllTourGuides = () => {
+  return dispatch => {
+    fetch('http://localhost:3000/tour_guides')
+        .then (res => res.json())
+        .then (tour_guides => {
+          dispatch({type: FETCHALLTOURGUIDES, payload: tour_guides})
+        })
+  }
+}
+
+export const fetchAllTourists = () => {
+  return dispatch => {
+    fetch('http://localhost:3000/tourists')
+    .then (res => res.json())
+    .then (tourists => {
+      dispatch({type: FETCHALLTOURISTS, payload: tourists})
+    })
   }
 }

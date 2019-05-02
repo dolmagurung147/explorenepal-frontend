@@ -83,18 +83,19 @@ class PlaceIVistedCard extends Component{
     })
   }
 
+// ------------- REVIEW FROM TOURIST TO TOURGUIDE ---------------
   submitTGReviewHandler = (e) => {
-    fetch('http://localhost:3000/tour_guide_reviews', {
+    fetch('http://localhost:3000/tourist_reviews', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        tour_guide_review: {
+        tourist_review: {
           tour_guide_id: this.props.tourGuide.id,
           tourist_id: this.props.loggedInuserInfo.id,
           rating: this.state.rating,
-          touristReview: this.state.review
+          tourguide_Review: this.state.review
         }
       })
     })

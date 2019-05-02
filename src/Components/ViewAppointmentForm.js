@@ -4,23 +4,13 @@ import * as actions from '../actions'
 
 class ViewAppointmentForm extends Component {
   state = {
-    allTourGuides: [],
     selectedTourGuide: '',
     selectedDate: '',
     selectedTime: ''
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/tour_guides')
-    .then(res => res.json())
-    .then(tour_guides => this.setState({
-        allTourGuides: tour_guides
-      })
-    )
-  }
-
   tour_guides_list = () =>{
-    return this.state.allTourGuides.map((tour_guide) => {
+    return this.props.allTourGuides.map((tour_guide) => {
       return <option value={tour_guide.name} key={tour_guide.id}>{tour_guide.name}</option>
     })
   }
@@ -50,7 +40,7 @@ class ViewAppointmentForm extends Component {
     if (Date.parse(this.state.selectedDate) < Date.now()){
       alert('Please Enter valid date')
     } else {
-      let tour_guide_id = this.state.allTourGuides.find((tour_guide) => {
+      let tour_guide_id = this.props.allTourGuides.find((tour_guide) => {
         return tour_guide.name === this.state.selectedTourGuide
       }).id
       let date_and_time = `${this.state.selectedDate} ${this.state.selectedTime}`
@@ -95,4 +85,10 @@ class ViewAppointmentForm extends Component {
   }
 }
 
-export default connect(null, actions)(ViewAppointmentForm)
+const mapStateToProps = (state) => {
+  return {
+    allTourGuides: state.allTourGuides
+  }
+}
+
+export default connect(mapStateToProps, actions)(ViewAppointmentForm)
