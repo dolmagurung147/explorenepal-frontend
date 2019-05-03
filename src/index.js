@@ -66,7 +66,7 @@ const reducer = (state=initialState, action) => {
     case DELETEAPPOINTMENT:
       return {...state, myAppointments: state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload)}
     case EDITAPPOINTMENT:
-      return {...state, myAppointments: [...state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload.id), action.payload]}
+      return {...state, myAppointments: [...state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload.id), action.payload].sort((a,b) => a.id - b.id)}
     case TOGGLEEXPLOREPAGE:
       return {...state, explorePageToRender: action.payload}
     case FETCHALLTOURGUIDES:
