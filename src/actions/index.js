@@ -103,7 +103,8 @@ export const updateUserInfo = (updatedInfo, type, user_id) => {
           name: updatedInfo.name,
           profile_picture: updatedInfo.profile_picture,
           username: updatedInfo.username,
-          short_bio: updatedInfo.short_bio
+          short_bio: updatedInfo.short_bio,
+          date_of_birth: updatedInfo.date_of_birth
         }
       })
     })
