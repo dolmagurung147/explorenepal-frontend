@@ -60,6 +60,7 @@ class ViewAppointmentForm extends Component {
       })
       .then (res => res.json())
       .then (newAppointment => this.props.addNewAppointment(newAppointment))
+      this.props.toggleBackState();
       this.setState({
         selectedTourGuide: '',
         selectedDate: '',

@@ -21,9 +21,15 @@ class DestinationShowPage extends Component {
     })
   }
 
+  toggleBackState = () => {
+    this.setState({
+      viewAppointmentForm: false
+    })
+  }
+
   booknow = () => {
     if (this.state.viewAppointmentForm) {
-      return <ViewAppointmentForm tourist_id={this.props.loggedInuserInfo.id} destination_id={this.props.chosenDestination.id}/>
+      return <ViewAppointmentForm tourist_id={this.props.loggedInuserInfo.id} destination_id={this.props.chosenDestination.id} toggleBackState={this.toggleBackState}/>
     }
     else {
       return (
@@ -38,7 +44,6 @@ class DestinationShowPage extends Component {
   }
 
   render() {
-    console.log(this.props.chosenDestination);
     return (
       <div>
         <div>

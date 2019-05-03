@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 import EditMyProfile from '../Components/EditMyProfile'
+import ShowMyProfile from '../Components/ShowMyProfile'
 
 class MyProfile extends Component {
 
@@ -17,32 +18,26 @@ class MyProfile extends Component {
     })
   }
 
-  showMyProfile = () => {
-    console.log(this.props);
-    return(
-      <div>
-        <h1>MY Profile </h1>
-        <h1>{this.props.userInfo.name} </h1>
-        <img src={this.props.userInfo.profile_picture} alt=''/>
-        <p>Username : {this.props.userInfo.username}</p>
-        <p>Short-Bio: {this.props.userInfo.short_bio}</p>
-        <p>Date of Birth: {this.props.userInfo.date_of_birth}</p>
-        <button onClick={this.editMyProfileHandler}> EDIT MY PROFILE </button>
-      </div>
-    )
-  }
-
   saveEditProfileHandler = (changedInfo) => {
     this.setState({
       editButtonClicked: false
     })
-    this.props.updateUserInfo(changedInfo, this.props.whoIsLoggedIn, this.props.userInfo.id)
+    this.props.updateUserInfo(changedInfo,
+      this.props.whoIsLoggedIn,
+      this.props.userInfo.id)
   }
 
   render() {
     return (
       <div>
-        {this.state.editButtonClicked ? <EditMyProfile saveChanges={this.saveEditProfileHandler}/> : this.showMyProfile()}
+        {this.state.editButtonClicked ?
+          <EditMyProfile
+          saveChanges={this.saveEditProfileHandler}
+          /> :
+          <ShowMyProfile
+          userInfo={this.props.userInfo}
+          editMyProfileHandler={this.editMyProfileHandler}
+          />}
       </div>
     )
   }
