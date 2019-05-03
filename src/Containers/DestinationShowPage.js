@@ -58,8 +58,9 @@ class DestinationShowPage extends Component {
           <h2> About: </h2>
           <p> Location: {this.props.chosenDestination.location} </p>
           <p> Difficulty-level: {this.props.chosenDestination.difficulty_level}</p>
+          <p> Cost for this Destination: $ {this.props.chosenDestination.costForThisDestination}</p>
           <p> Short Description: {this.props.chosenDestination.about}</p>
-          <p> Best Time To Visit: {this.props.chosenDestination.best_time_to_visit}</p>
+          <p> Best Time To Visit:{this.props.chosenDestination.best_time_to_visit}</p>
         </div>
         <div>
           <h2> Reviews and Rating: </h2>
