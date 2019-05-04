@@ -6,14 +6,16 @@ import DestinationCard from '../Components/DestinationCard'
 const TopDestinations = (props) => {
   console.log(props.topDestinations);
 
-  const topDestinationsCardArr = props.topDestinations.map(destinationObj => {
-    return <DestinationCard key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
-  })
+  const topDestinationsCardArr = () => {
+      return props.topDestinations.map(destinationObj => {
+        return <DestinationCard key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
+      })
+  }
 
   return (
     <div>
       <h1>Top Destinations</h1>
-      {topDestinationsCardArr}
+      {topDestinationsCardArr()}
     </div>
   )
 }

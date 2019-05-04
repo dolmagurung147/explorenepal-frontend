@@ -9,7 +9,7 @@ import MyAppointments from './MyAppointments'
 import MyProfile from './MyProfile'
 import PlacesIVisited from './PlacesIVisited'
 import TouristsGuided from './TouristsGuided'
-import MyRequests from '../Components/MyRequests'
+import MyRequests from './MyRequests'
 import * as actions from '../actions'
 
 import { connect } from 'react-redux'

@@ -12,7 +12,8 @@ import {
   FETCHALLTOURGUIDES,
   FETCHALLTOURISTS,
   FETCHTOPDESTINATIONS,
-  ADDREQUESTFORAPPOINTMENTS
+  ADDREQUESTFORAPPOINTMENTS,
+  DELETEREQUESTFORAPPOINTMENTS
 } from './types'
 
 export const fetchDestinations = () => {
@@ -117,7 +118,7 @@ export const updateUserInfo = (updatedInfo, type, user_id) => {
   }
 }
 
-export const makeNewRequestForReservation = (data, date_and_time) => {
+export const makeNewRequestForReservation = (data) => {
   return dispatch => {
     fetch('http://localhost:3000/request_for_appointments', {
       method: 'POST',
@@ -134,12 +135,37 @@ export const makeNewRequestForReservation = (data, date_and_time) => {
     })
   }
 }
-
-export const addNewAppointment = (appointment) => {
+export const deleteRequest = (requestId) => {
   return dispatch => {
-    dispatch({type: ADDAPPOINTMENT, payload: {newAppointment: appointment}})
+    fetch(`http://localhost:3000/request_for_appointments/${requestId}`, {
+      method: 'DELETE'
+    })
+    .then (res => res.json())
+    .then (deletedRequest => {
+      dispatch({type: DELETEREQUESTFORAPPOINTMENTS, payload: deletedRequest})
+    })
   }
 }
+
+
+export const createNewAppointment = (data) => {
+  return dispatch => {
+    fetch('http://localhost:3000/appointments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        appointment: data
+      })
+    })
+    .then (res => res.json())
+    .then (newAppointment => {
+      dispatch({type: ADDAPPOINTMENT, payload: newAppointment})
+    })
+  }
+}
+
 
 export const deleteAppointment = (appointment_id) => {
   return dispatch => {

@@ -20,6 +20,7 @@ import { FETCH_DESTINATIONS,
   FETCHALLTOURISTS,
   FETCHTOPDESTINATIONS,
   ADDREQUESTFORAPPOINTMENTS,
+  DELETEREQUESTFORAPPOINTMENTS,
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -68,7 +69,7 @@ const reducer = (state=initialState, action) => {
     case UPDATEUSER:
       return{...state, loggedInuserInfo: action.payload.updatedinfo}
     case ADDAPPOINTMENT:
-      return {...state, myAppointments: [...state.myAppointments, action.payload.newAppointment]}
+      return {...state, myAppointments: [...state.myAppointments, action.payload]}
     case DELETEAPPOINTMENT:
       return {...state, myAppointments: state.myAppointments.filter(myAppointment => myAppointment.id !== action.payload)}
     case EDITAPPOINTMENT:
@@ -95,6 +96,8 @@ const reducer = (state=initialState, action) => {
       return {...state, chosenDestination: action.payload}
     case ADDREQUESTFORAPPOINTMENTS:
       return {...state, requestForAppointments: [...state.requestForAppointments, action.payload]}
+    case DELETEREQUESTFORAPPOINTMENTS:
+      return {...state, requestForAppointments: state.requestForAppointments.filter(request => request.id !== action.payload.id)}
     default:
       return state
   }
