@@ -9,12 +9,15 @@ import DestinationShowPage from './DestinationShowPage'
 
 class Home extends Component {
 
+  componentDidMount() {
+
+  }
 
   allDestinations = () => {
     return (
       <div>
         <Explore destinationChosen={this.destinationChosen} />
-        <TopDestinations />
+        <TopDestinations destinationChosen={this.destinationChosen}/>
       </div>
     )
   }
@@ -25,7 +28,6 @@ class Home extends Component {
   }
 
   render() {
-    // console.log(JSON.stringify(this.props.lastLocation));
     return (
       <div>
       {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage/>}

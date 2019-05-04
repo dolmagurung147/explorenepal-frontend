@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 import TouristIGuidedCard from '../Components/TouristIGuidedCard'
 
-const TouristsGuided = (props) => {
+class TouristsGuided extends Component {
 
-  const findTouristsThatIGuided = () => {
-    let touristIworkedWith = props.allTourists.filter(tourist => {
-        return props.pastAppointments.filter(pastApp => {
+  componentDidMount() {
+    if (!this.props.allTourists.length) {
+      this.props.fetchAllTourists();
+    }
+  }
+
+  findTouristsThatIGuided = () => {
+    let touristIworkedWith = this.props.allTourists.filter(tourist => {
+        return this.props.pastAppointments.filter(pastApp => {
           return pastApp.tourist_id === tourist.id
         }).length
       })
@@ -16,12 +23,14 @@ const TouristsGuided = (props) => {
     })
   }
 
-  return (
-    <div>
+  render(){
+    return (
+      <div>
       <h1> TOURISTS THAT I HAVE WORKED WITH </h1>
-      {props.allTourists.length > 0 ? findTouristsThatIGuided() : null}
-    </div>
-  )
+      {this.props.allTourists.length > 0 ? this.findTouristsThatIGuided() : null}
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -32,4 +41,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(TouristsGuided)
+export default connect(mapStateToProps, actions)(TouristsGuided)

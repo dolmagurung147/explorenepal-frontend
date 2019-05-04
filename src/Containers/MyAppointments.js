@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import MyAppointmentCard from '../Components/MyAppointmentCard'
 
 const MyAppointments = (props) => {
-  console.log(props.myAppointments);
   const myAppointmentCards = () => {
       return (
         props.myAppointments.map(myAppointmentObj => {

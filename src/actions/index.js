@@ -10,7 +10,8 @@ import {
   LOGOUT,
   SETCHOSENDESTINATION,
   FETCHALLTOURGUIDES,
-  FETCHALLTOURISTS
+  FETCHALLTOURISTS,
+  FETCHTOPDESTINATIONS
 } from './types'
 
 export const fetchDestinations = () => {
@@ -186,6 +187,16 @@ export const fetchAllTourists = () => {
     .then (res => res.json())
     .then (tourists => {
       dispatch({type: FETCHALLTOURISTS, payload: tourists})
+    })
+  }
+}
+
+export const fetchTopDestinations = () => {
+  return dispatch => {
+    fetch('http://localhost:3000/top_destinations')
+    .then (res => res.json())
+    .then (topDestinations => {
+      dispatch({type: FETCHTOPDESTINATIONS, payload: topDestinations})
     })
   }
 }

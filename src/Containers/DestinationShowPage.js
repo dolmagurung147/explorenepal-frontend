@@ -8,6 +8,12 @@ class DestinationShowPage extends Component {
     viewAppointmentForm: false
   }
 
+  componentDidMount(){
+    if (!this.props.allTourists.length) {
+      this.props.fetchAllTourists();
+    }
+  }
+
   destinationImages = () => {
     return this.props.chosenDestination.destination_images.map((imageObj) => {
       return <img key={imageObj.id} src={imageObj.image} alt=""/>

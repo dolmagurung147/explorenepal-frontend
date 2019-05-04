@@ -10,6 +10,12 @@ class MyAppointmentCard extends Component{
     editedTime: this.props.myAppointment.date_and_time.split('T')[1].split('.')[0]
   }
 
+  componentDidMount() {
+    if (!this.props.allTourists.length) {
+      this.props.fetchAllTourists();
+    }
+  }
+
   findDestination = () => {
     if (this.props.destinations.length > 0) {
       return(

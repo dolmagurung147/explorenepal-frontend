@@ -9,15 +9,13 @@ import MainContainer from './Containers/MainContainer'
 
 class App extends Component {
 
-  // componentDidMount() {
-    // console.log(this.props.fetchDestinations);
-    // console.log("HEY FROM APP");
-  // }
-
-  render() {
+  componentDidMount() {
     this.props.fetchDestinations();
     this.props.fetchAllTourGuides();
-    this.props.fetchAllTourists();
+    this.props.fetchTopDestinations();
+  }
+
+  render() {
     return (
       <BrowserRouter>
         <MainContainer/>

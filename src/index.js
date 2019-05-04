@@ -17,7 +17,8 @@ import { FETCH_DESTINATIONS,
   LOGOUT,
   SETCHOSENDESTINATION,
   FETCHALLTOURGUIDES,
-  FETCHALLTOURISTS
+  FETCHALLTOURISTS,
+  FETCHTOPDESTINATIONS
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -34,7 +35,8 @@ const initialState = {
   whichPageTorenderOnBackButton: '/home',
   chosenDestination: {},
   allTourGuides: [],
-  allTourists: []
+  allTourists: [],
+  topDestinations: []
 }
 
 const reducer = (state=initialState, action) => {
@@ -73,6 +75,8 @@ const reducer = (state=initialState, action) => {
       return {...state, allTourGuides: action.payload}
     case FETCHALLTOURISTS:
       return {...state, allTourists: action.payload}
+    case FETCHTOPDESTINATIONS:
+      return {...state, topDestinations: action.payload}
     case LOGOUT:
       return {
         ...state,

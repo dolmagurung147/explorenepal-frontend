@@ -1,18 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import DestinationCard from '../Components/DestinationCard'
+
 const TopDestinations = (props) => {
-  // let topDestinations = props.destinations.filter(destination => {
-  //   return destination
-  // })
+  console.log(props.topDestinations);
+
+  const topDestinationsCardArr = props.topDestinations.map(destinationObj => {
+    return <DestinationCard key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
+  })
+
   return (
-    <h1>Top Destinations</h1>
+    <div>
+      <h1>Top Destinations</h1>
+      {topDestinationsCardArr}
+    </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    destinations: state.destinations
+    topDestinations: state.topDestinations
   }
 }
 
