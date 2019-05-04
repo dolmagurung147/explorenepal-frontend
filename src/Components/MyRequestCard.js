@@ -13,7 +13,7 @@ const MyRequestCard = (props) => {
   }
 
   const cancelRequestHandler = () => {
-    console.log("CANCEL REQUEST");
+    props.deleteRequest(props.request.id)
   }
 
   const showTouristOptions = () => {
@@ -32,6 +32,7 @@ const MyRequestCard = (props) => {
       date_and_time: props.request.date_and_time
     }
     props.createNewAppointment(appointmentData)
+    props.deleteRequest(props.request.id)
   }
 
   const declineRequestHandler = () => {
@@ -51,8 +52,8 @@ const MyRequestCard = (props) => {
   return (
     <div>
       Destination : {destinationName()} <br/>
-      Date : <br/>
-      Time : <br/>
+      Date : {props.request.date_and_time.split('T')[0]}<br/>
+      Time : {props.request.date_and_time.split('T')[1]}<br/>
       {props.whoIsLoggedIn === 'tourist' ? showTouristOptions() : showTourGuideOptions()} <br/> <br/>
     </div>
   )
