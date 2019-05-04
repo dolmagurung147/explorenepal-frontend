@@ -18,7 +18,8 @@ import { FETCH_DESTINATIONS,
   SETCHOSENDESTINATION,
   FETCHALLTOURGUIDES,
   FETCHALLTOURISTS,
-  FETCHTOPDESTINATIONS
+  FETCHTOPDESTINATIONS,
+  ADDREQUESTFORAPPOINTMENTS,
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -36,7 +37,8 @@ const initialState = {
   chosenDestination: {},
   allTourGuides: [],
   allTourists: [],
-  topDestinations: []
+  topDestinations: [],
+  requestForAppointments: []
 }
 
 const reducer = (state=initialState, action) => {
@@ -46,11 +48,12 @@ const reducer = (state=initialState, action) => {
     case SIGNUPUSER:
       let currentUser = action.payload.tour_guide ? "tour_guide" : "tourist"
       return{...state,
-         loggedin: true,
-         whoIsLoggedIn: currentUser,
-         loggedInuserInfo: action.payload.user,
-         myAppointments: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
-         placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : []
+        loggedin: true,
+        whoIsLoggedIn: currentUser,
+        loggedInuserInfo: action.payload.user,
+        myAppointments: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
+        placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : [],
+        requestForAppointments: action.payload.user ? action.payload.user.request_for_appointments : null
        }
     case LOGINUSER:
       let userType = action.payload.userType
@@ -59,7 +62,8 @@ const reducer = (state=initialState, action) => {
         whoIsLoggedIn: userType,
         loggedInuserInfo: action.payload.user ,
         myAppointments: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
-        placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : []
+        placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : [],
+        requestForAppointments: action.payload.user ? action.payload.user.request_for_appointments : null
       }
     case UPDATEUSER:
       return{...state, loggedInuserInfo: action.payload.updatedinfo}
@@ -89,6 +93,8 @@ const reducer = (state=initialState, action) => {
       explorePageToRender: true}
     case SETCHOSENDESTINATION:
       return {...state, chosenDestination: action.payload}
+    case ADDREQUESTFORAPPOINTMENTS:
+      return {...state, requestForAppointments: [...state.requestForAppointments, action.payload]}
     default:
       return state
   }

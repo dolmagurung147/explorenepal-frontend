@@ -35,6 +35,7 @@ const loggedInNavBar = (props) => {
     <div>
       <Link to='/myAppointments'> My Appointments </Link>
       <Link to='/myProfile'> My Profile </Link>
+      <Link to='/myRequests'> My Requests </Link>
       {props.whoIsLoggedIn ? check(props) : null}
     </div>
   )

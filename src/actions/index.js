@@ -11,7 +11,8 @@ import {
   SETCHOSENDESTINATION,
   FETCHALLTOURGUIDES,
   FETCHALLTOURISTS,
-  FETCHTOPDESTINATIONS
+  FETCHTOPDESTINATIONS,
+  ADDREQUESTFORAPPOINTMENTS
 } from './types'
 
 export const fetchDestinations = () => {
@@ -112,6 +113,24 @@ export const updateUserInfo = (updatedInfo, type, user_id) => {
     .then (res => res.json())
     .then (user => {
       dispatch({type: UPDATEUSER, payload: {updatedinfo: user}})
+    })
+  }
+}
+
+export const makeNewRequestForReservation = (data, date_and_time) => {
+  return dispatch => {
+    fetch('http://localhost:3000/request_for_appointments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        request_for_appointment: data
+      })
+    })
+    .then (res => res.json())
+    .then (newRequest => {
+      dispatch({type: ADDREQUESTFORAPPOINTMENTS, payload: newRequest})
     })
   }
 }

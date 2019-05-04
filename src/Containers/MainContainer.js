@@ -9,6 +9,7 @@ import MyAppointments from './MyAppointments'
 import MyProfile from './MyProfile'
 import PlacesIVisited from './PlacesIVisited'
 import TouristsGuided from './TouristsGuided'
+import MyRequests from '../Components/MyRequests'
 import * as actions from '../actions'
 
 import { connect } from 'react-redux'
@@ -38,6 +39,7 @@ class MainContainer extends Component {
           <Route  path="/myProfile" render={()=> <MyProfile />}/>
           <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
           <Route  path="/touristsGuided" render={()=> <TouristsGuided />}/>
+          <Route  path="/myRequests" render={()=> <MyRequests />}/>
           <Route  path="/" render={()=> <MainPage />}/>
         </Switch>
         </LastLocationProvider>

@@ -44,22 +44,28 @@ class ViewAppointmentForm extends Component {
         return tour_guide.name === this.state.selectedTourGuide
       }).id
       let date_and_time = `${this.state.selectedDate} ${this.state.selectedTime}`
-      fetch('http://localhost:3000/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          appointment: {
-            tourist_id: this.props.tourist_id,
-            tour_guide_id: tour_guide_id,
-            date_and_time: date_and_time  ,
-            destination_id: this.props.destination_id
-          }
-        })
-      })
-      .then (res => res.json())
-      .then (newAppointment => this.props.addNewAppointment(newAppointment))
+      let data = {
+        tourist_id: this.props.tourist_id,
+        tour_guide_id: tour_guide_id,
+        destination_id: this.props.destination_id
+      }
+      this.props.makeNewRequestForReservation(data, date_and_time)
+      // fetch('http://localhost:3000/appointments', {
+        // method: 'POST',
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify({
+        //   appointment: {
+        //     tourist_id: this.props.tourist_id,
+        //     tour_guide_id: tour_guide_id,
+        //     date_and_time: date_and_time  ,
+        //     destination_id: this.props.destination_id
+        //   }
+        // })
+      // })
+      // .then (res => res.json())
+      // .then (newAppointment => this.props.addNewAppointment(newAppointment))
       this.props.toggleBackState();
       this.setState({
         selectedTourGuide: '',
