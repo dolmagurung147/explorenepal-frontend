@@ -1,62 +1,86 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const MyRequestCard = (props) => {
+class MyRequestCard extends Component {
 
-  const destinationName = () => {
-    if (props.destinations.length) {
+  componentDidMount() {
+    if (!this.props.allTourists.length) {
+      this.props.fetchAllTourists()
+    }
+  }
+
+  destinationName = () => {
+    if (this.props.destinations.length) {
       return (
-        props.destinations.find(destination => destination.id === props.request.destination_id)
+        this.props.destinations.find(destination => destination.id === this.props.request.destination_id)
       ).name
     }
   }
 
-  const cancelRequestHandler = () => {
-    props.deleteRequest(props.request.id)
+  cancelRequestHandler = () => {
+    this.props.deleteRequest(this.props.request.id)
   }
 
-  const showTouristOptions = () => {
+  showTouristOptions = () => {
     return (
       <>
-        <button onClick={cancelRequestHandler}>Cancel this request</button>
+        <button onClick={this.cancelRequestHandler}>Cancel this request</button>
       </>
     )
   }
 
-  const acceptRequestHandler = () => {
+  acceptRequestHandler = () => {
     let appointmentData = {
-      tourist_id: props.request.tourist_id,
-      tour_guide_id: props.request.tour_guide_id,
-      destination_id: props.request.destination_id,
-      date_and_time: props.request.date_and_time
+      tourist_id: this.props.request.tourist_id,
+      tour_guide_id: this.props.request.tour_guide_id,
+      destination_id: this.props.request.destination_id,
+      date_and_time: this.props.request.date_and_time
     }
-    props.createNewAppointment(appointmentData)
-    props.deleteRequest(props.request.id)
+    this.props.createNewAppointment(appointmentData)
+    this.props.deleteRequest(this.props.request.id)
   }
 
-  const declineRequestHandler = () => {
-    props.deleteRequest(props.request.id)
+  declineRequestHandler = () => {
+    this.props.deleteRequest(this.props.request.id)
     console.log("DECLINE THE REQUEST");
   }
 
-  const showTourGuideOptions = () => {
+  aboutTourist = () => {
+    if (this.props.allTourists.length) {
+      let foundTourist = this.props.allTourists.find(tourist => {
+        return tourist.id === this.props.request.tourist_id
+      })
+      return (
+        <div>
+        Name: {foundTourist.name} <br />
+        Rating: {foundTourist.avgrating} <br />
+        </div>
+      )
+    }
+  }
+
+  showTourGuideOptions = () => {
     return (
       <>
-        <button onClick={acceptRequestHandler}> Accept </button>
-        <button onClick={declineRequestHandler}> Decline </button>
+        Tourist: {this.aboutTourist()} <br />
+        <button onClick={this.acceptRequestHandler}> Accept </button>
+        <button onClick={this.declineRequestHandler}> Decline </button>
       </>
     )
   }
 
-  return (
-    <div>
-      Destination : {destinationName()} <br/>
-      Date : {props.request.date_and_time.split('T')[0]}<br/>
-      Time : {props.request.date_and_time.split('T')[1]}<br/>
-      {props.whoIsLoggedIn === 'tourist' ? showTouristOptions() : showTourGuideOptions()} <br/> <br/>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+      Destination : {this.destinationName()} <br/>
+      Date : {this.props.request.date_and_time.split('T')[0]}<br/>
+      Time : {this.props.request.date_and_time.split('T')[1]}<br/>
+      {this.props.whoIsLoggedIn === 'tourist' ? this.showTouristOptions() : this.showTourGuideOptions()} <br/> <br/>
+      </div>
+    )
+  }
+
 }
 
 const mapStateToProps = (state) => {
