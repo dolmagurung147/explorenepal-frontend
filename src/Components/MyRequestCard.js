@@ -58,14 +58,6 @@ class MyRequestCard extends Component {
         return tourist.id === this.props.request.tourist_id
       })
       return foundTourist
-      // (
-      //   <div>
-      //     <Card.Header> Name: {foundTourist.name} <br/>
-      //       Rating: {foundTourist.avgrating}
-      //       <Image floated='right' size='mini' src={foundTourist.profile_picture} />
-      //     </Card.Header>
-      //   </div>
-      // )
     }
   }
 
