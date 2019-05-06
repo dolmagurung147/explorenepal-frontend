@@ -9,7 +9,7 @@ const NavBar = (props) => {
     <div>
       <Link to="/home">Home </Link>
       {props.loggedin ? <Link to='/' onClick={() => logOut(props)}> Logout </Link> : <Link to="/login">Login/Signup</Link>}
-      {props.loggedin ? loggedInNavBar(props) : null}
+      {props.loggedin ? loggedInNavBar(props) : null} <br/> <br/>
     </div>
   )
 }

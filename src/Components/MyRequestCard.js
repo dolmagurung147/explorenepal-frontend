@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import { Button, Card, Image } from 'semantic-ui-react'
+
 class MyRequestCard extends Component {
+
+  state = {
+    tourist: {}
+  }
 
   componentDidMount() {
     if (!this.props.allTourists.length) {
@@ -51,33 +57,44 @@ class MyRequestCard extends Component {
       let foundTourist = this.props.allTourists.find(tourist => {
         return tourist.id === this.props.request.tourist_id
       })
-      return (
-        <div>
-        Name: {foundTourist.name} <br />
-        Rating: {foundTourist.avgrating} <br />
-        </div>
-      )
+      return foundTourist
+      // (
+      //   <div>
+      //     <Card.Header> Name: {foundTourist.name} <br/>
+      //       Rating: {foundTourist.avgrating}
+      //       <Image floated='right' size='mini' src={foundTourist.profile_picture} />
+      //     </Card.Header>
+      //   </div>
+      // )
     }
   }
 
   showTourGuideOptions = () => {
     return (
       <>
-        Tourist: {this.aboutTourist()} <br />
-        <button onClick={this.acceptRequestHandler}> Accept </button>
-        <button onClick={this.declineRequestHandler}> Decline </button>
+        <Image floated='right'
+        size='mini'
+        src={this.aboutTourist() ? this.aboutTourist().profile_picture : null}
+        />
+        <Card.Header> {this.aboutTourist() ? this.aboutTourist().name : null} </Card.Header>
+        <Card.Meta> Destination: {this.destinationName()}</Card.Meta> <br/>
+        <Card.Description>Date : {this.props.request.date_and_time.split('T')[0]}<br/>
+        Time : {this.props.request.date_and_time.split('T')[1]}<br/> </Card.Description>
+        <div className='ui two buttons'>
+          <Button basic color = 'blue' onClick={this.acceptRequestHandler} > Accept </Button>
+          <Button basic color = 'red' onClick={this.declineRequestHandler}> Decline </Button>
+        </div>
       </>
     )
   }
 
   render() {
     return (
-      <div>
-      Destination : {this.destinationName()} <br/>
-      Date : {this.props.request.date_and_time.split('T')[0]}<br/>
-      Time : {this.props.request.date_and_time.split('T')[1]}<br/>
-      {this.props.whoIsLoggedIn === 'tourist' ? this.showTouristOptions() : this.showTourGuideOptions()} <br/> <br/>
-      </div>
+      <Card>
+        <Card.Content>
+          {this.props.whoIsLoggedIn === 'tourist' ? this.showTouristOptions() : this.showTourGuideOptions()} <br/> <br/>
+        </Card.Content>
+      </Card>
     )
   }
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { Card } from 'semantic-ui-react'
+
 import MyRequestCard from '../Components/MyRequestCard'
 
 const MyRequests = (props) => {
@@ -14,7 +16,9 @@ const MyRequests = (props) => {
   return (
     <div>
       MY REQUESTS <br/><br/>
-      {myRequestCardsArr()}
+      <Card.Group>
+        {myRequestCardsArr()}
+      </Card.Group>
     </div>
   )
 }
