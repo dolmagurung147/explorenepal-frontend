@@ -147,6 +147,18 @@ export const deleteRequest = (requestId) => {
   }
 }
 
+export const deleteCancelledRequest = (requestId) => {
+  return dispatch => {
+    fetch(`http://localhost:3000/request_for_appointments/delete_and_send_message/${requestId}`, {
+      method: 'DELETE'
+    })
+    .then (res => res.json())
+    .then (deletedRequest => {
+      dispatch({type: DELETEREQUESTFORAPPOINTMENTS, payload: deletedRequest})
+    })
+  }
+}
+
 
 export const createNewAppointment = (data) => {
   return dispatch => {

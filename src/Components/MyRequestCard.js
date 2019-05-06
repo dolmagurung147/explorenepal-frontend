@@ -42,7 +42,7 @@ class MyRequestCard extends Component {
   }
 
   declineRequestHandler = () => {
-    this.props.deleteRequest(this.props.request.id)
+    this.props.deleteCancelledRequest(this.props.request.id)
     console.log("DECLINE THE REQUEST");
   }
 
