@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { Input, Menu } from 'semantic-ui-react'
 
 import * as actions from '../actions'
 
 const NavBar = (props) => {
+
   return (
-    <div>
-      <Link to="/home">Home </Link>
-      {props.loggedin ? <Link to='/' onClick={() => logOut(props)}> Logout </Link> : <Link to="/login">Login/Signup</Link>}
+    <Menu secondary>
+      <Menu.Item name='Home'as={Link} to="/home" />
+      {props.loggedin ? <Menu.Menu position='right'><Menu.Item name='Logout' as={Link} to='/' onClick={() => logOut(props)} /> </Menu.Menu> : <Menu.Menu><Menu.Item name='Login/Signup' as={Link} /></Menu.Menu>}
       {props.loggedin ? loggedInNavBar(props) : null} <br/> <br/>
-    </div>
+    </Menu>
   )
 }
 

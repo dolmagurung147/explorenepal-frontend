@@ -40,7 +40,7 @@ class MainContainer extends Component {
           <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
           <Route  path="/touristsGuided" render={()=> <TouristsGuided />}/>
           <Route  path="/myRequests" render={()=> <MyRequests />}/>
-          <Route  path="/" render={()=> <MainPage />}/>
+          <Route  path="/" render={()=> <MainPage id='mainPage'/>}/>
         </Switch>
         </LastLocationProvider>
       </div>
