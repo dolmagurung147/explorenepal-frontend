@@ -75,3 +75,34 @@
   margin: 1%;
 }
 /* ********************************** */
+
+h1 {
+  font-family: 'Pacifico', cursive;
+}
+
+h4 h2 {
+  color: rgba(0,0,0);
+  font-family: 'Gilda Display', serif;
+}
+
+/*  SHOW MY PROFILE PAGE ..............  */
+.myProfile {
+  align: center;
+  margin: 2%;
+}
+
+.profileInfo {
+  border-style: ridge;
+  height: 800px;
+  margin: auto 20%;
+}
+
+.editProfileInfo {
+  border-style: ridge;
+}
+
+.editProfileForm {
+  margin: 3%;
+}
+
+/****************************************  */

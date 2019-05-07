@@ -18,7 +18,7 @@ const NavBar = (props) => {
           <Icon name='sidebar' />
         </Menu.Item>
         <Menu.Item name='Home' as='a' as={Link} to="/home">
-          <Icon name='home' /> Home
+          <Icon name='home' />Home
         </Menu.Item>
         {props.loggedin ? <Menu.Menu position='right' className='loginLogoutBtn'><Menu.Item name='Logout' as={Link} to='/' onClick={() => logOut(props)} /> </Menu.Menu> : <Menu.Menu position='right'><Menu.Item name='Login' as={Link} to='/login'/></Menu.Menu>}
       </Menu>

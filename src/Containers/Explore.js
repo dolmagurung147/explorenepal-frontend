@@ -15,7 +15,7 @@ class Explore extends Component {
 
     return (
       <div className='explore' style={{textAlign: 'center'}}>
-      <h2>Explore</h2>
+      <h1>Explore</h1>
         <div id='exploreCardContainer'>
           {destinationCards}
         </div>
