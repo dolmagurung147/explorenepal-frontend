@@ -7,11 +7,9 @@ import Explore from './Explore'
 import TopDestinations from './TopDestinations'
 import DestinationShowPage from './DestinationShowPage'
 
+
 class Home extends Component {
 
-  componentDidMount() {
-
-  }
 
   allDestinations = () => {
     return (
@@ -40,7 +38,9 @@ class Home extends Component {
 const mapStateToProps = (state) =>{
   return {
     explorePageToRender: state.explorePageToRender,
-    chosenDestination: state.chosenDestination
+    chosenDestination: state.chosenDestination,
+    sidebarClicked: state.sidebarClicked,
+    whoIsLoggedIn: state.whoIsLoggedIn,
   }
 }
 

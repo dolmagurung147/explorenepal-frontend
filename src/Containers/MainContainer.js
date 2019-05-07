@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import MainPage from '../Components/MainPage'
 import Login from './Login'
 import Home from './Home'
-import NavBar from '../Components/NavBar'
 import MyAppointments from './MyAppointments'
 import MyProfile from './MyProfile'
 import PlacesIVisited from './PlacesIVisited'
@@ -29,27 +28,23 @@ class MainContainer extends Component {
 
   render(){
     return (
-      <div>
-        <LastLocationProvider >
-        <NavBar />
-        <Switch>
-          <Route  path ="/home" render={()=> <Home / >}/>
-          <Route  path="/login" render={()=> <Login />}/>
-          <Route  path="/myAppointments" render={()=> <MyAppointments />}/>
-          <Route  path="/myProfile" render={()=> <MyProfile />}/>
-          <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
-          <Route  path="/touristsGuided" render={()=> <TouristsGuided />}/>
-          <Route  path="/myRequests" render={()=> <MyRequests />}/>
-          <Route  path="/" render={()=> <MainPage id='mainPage'/>}/>
-        </Switch>
-        </LastLocationProvider>
-      </div>
+          <Switch>
+            <Route  path ="/home" render={()=> <Home className='topSpacing'/ >}/>
+            <Route  path="/login" render={()=> <Login className='topSpacing'/>}/>
+            <Route  path="/myAppointments" render={()=> <MyAppointments />}/>
+            <Route  path="/myProfile" render={()=> <MyProfile />}/>
+            <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
+            <Route  path="/touristsGuided" render={()=> <TouristsGuided />}/>
+            <Route  path="/myRequests" render={()=> <MyRequests />}/>
+            <Route  path="/" render={()=> <MainPage id='mainPage'className='topSpacing'/>}/>
+          </Switch>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    sidebarClicked: state.sidebarClicked,
     state: state
   }
 }

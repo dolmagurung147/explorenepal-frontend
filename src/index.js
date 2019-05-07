@@ -21,6 +21,7 @@ import { FETCH_DESTINATIONS,
   FETCHTOPDESTINATIONS,
   ADDREQUESTFORAPPOINTMENTS,
   DELETEREQUESTFORAPPOINTMENTS,
+  TOGGLESIDEBAR,
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -39,7 +40,8 @@ const initialState = {
   allTourGuides: [],
   allTourists: [],
   topDestinations: [],
-  requestForAppointments: []
+  requestForAppointments: [],
+  sidebarClicked: false
 }
 
 const reducer = (state=initialState, action) => {
@@ -98,6 +100,8 @@ const reducer = (state=initialState, action) => {
       return {...state, requestForAppointments: [...state.requestForAppointments, action.payload]}
     case DELETEREQUESTFORAPPOINTMENTS:
       return {...state, requestForAppointments: state.requestForAppointments.filter(request => request.id !== action.payload.id)}
+    case TOGGLESIDEBAR:
+      return {...state, sidebarClicked: !state.sidebarClicked}
     default:
       return state
   }

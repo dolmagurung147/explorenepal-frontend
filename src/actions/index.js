@@ -13,7 +13,8 @@ import {
   FETCHALLTOURISTS,
   FETCHTOPDESTINATIONS,
   ADDREQUESTFORAPPOINTMENTS,
-  DELETEREQUESTFORAPPOINTMENTS
+  DELETEREQUESTFORAPPOINTMENTS,
+  TOGGLESIDEBAR
 } from './types'
 
 export const fetchDestinations = () => {
@@ -255,5 +256,11 @@ export const fetchTopDestinations = () => {
     .then (topDestinations => {
       dispatch({type: FETCHTOPDESTINATIONS, payload: topDestinations})
     })
+  }
+}
+
+export const toggleSidebarClick = () => {
+  return dispatch => {
+    dispatch({type: TOGGLESIDEBAR})
   }
 }

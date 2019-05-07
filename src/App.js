@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './actions'
+import NavBar from './Components/NavBar'
 
 import MainContainer from './Containers/MainContainer'
 
@@ -18,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <NavBar />
         <MainContainer/>
       </BrowserRouter>
     );
