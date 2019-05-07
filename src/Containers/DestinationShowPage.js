@@ -74,7 +74,7 @@ class DestinationShowPage extends Component {
            {this.props.chosenDestination.reviews.map(reviewObj => {
             return (
               <div key={reviewObj.id}>
-                <h3> Reviewed By: {this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name}</h3>
+                <h3> Reviewed By: {this.props.tourist? this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name : null}</h3>
                 Rating : {reviewObj.rating} <br/>
                 Review: {reviewObj.review}
               </div>

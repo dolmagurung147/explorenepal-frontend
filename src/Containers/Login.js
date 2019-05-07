@@ -90,18 +90,31 @@ class Login extends React.Component {
     </div>
     )
   }
+  // <form onSubmit={this.tourguideLoginFormHandler}>
+  //   Username: <input type="text" name="username" onChange={this.usernameOnchangeHandler}/>
+  //   Password: <input type="password" name="password" onChange={this.passwordOnchangeHandler}/>
+  //   <button> Submit </button>
+  // </form>
+  //
+  // <button onClick={this.tourguideSignupPageHandler}> New Tourguide? </button>
 
   tourguideLoginForm = () => {
     return (
       <div>
         <h1> Tour Guide Login Form </h1>
-        <form onSubmit={this.tourguideLoginFormHandler}>
-          Username: <input type="text" name="username" onChange={this.usernameOnchangeHandler}/>
-          Password: <input type="password" name="password" onChange={this.passwordOnchangeHandler}/>
-          <button> Submit </button>
-        </form>
-
-        <button onClick={this.tourguideSignupPageHandler}> New Tourguide? </button>
+        <Card className='loginForm'>
+          <Card.Content>
+            <Form >
+              <Form.Input label='Username' icon='user' iconPosition='left' type="text" name="username" onChange={this.usernameOnchangeHandler}/>
+              <Form.Input label='Password' icon='lock' iconPosition='left' type="password" name="password" onChange={this.passwordOnchangeHandler}/>
+              <br/>
+              <Button basic color='blue' onClick={this.tourguideLoginFormHandler}> Login </Button>
+            </Form>
+            </Card.Content>
+            <Card.Content extra>
+            <Button basic color='blue' onClick={this.tourguideSignupPageHandler}> New Tour Guide? </Button>
+          </Card.Content>
+        </Card>
       </div>
     )
   }
