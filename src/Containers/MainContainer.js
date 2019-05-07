@@ -12,7 +12,8 @@ import MyRequests from './MyRequests'
 import * as actions from '../actions'
 
 import { connect } from 'react-redux'
-import { LastLocationProvider } from 'react-router-last-location';
+// import { LastLocationProvider } from 'react-router-last-location';
+
 
 class MainContainer extends Component {
 
@@ -38,6 +39,7 @@ class MainContainer extends Component {
             <Route  path="/myRequests" render={()=> <MyRequests />}/>
             <Route  path="/" render={()=> <MainPage id='mainPage'className='topSpacing'/>}/>
           </Switch>
+
     )
   }
 }

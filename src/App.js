@@ -4,8 +4,11 @@ import { BrowserRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import NavBar from './Components/NavBar'
+import SidebarMenu from './Components/SidebarMenu'
 
 import MainContainer from './Containers/MainContainer'
+
+import { Grid } from 'semantic-ui-react'
 
 
 class App extends Component {
@@ -19,12 +22,24 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <NavBar />
-        <MainContainer/>
+        <Grid celled='internally'>
+          <Grid.Row>
+            <NavBar />
+          </Grid.Row>
+            {this.props.sidebarClicked ? <Grid.Row style={{marginTop: '54px'}}><Grid.Column width={3}>
+            <SidebarMenu />
+            </Grid.Column>
+            <Grid.Column width={13}> <MainContainer/></Grid.Column></Grid.Row> : <Grid.Row><MainContainer/></Grid.Row>}
+        </Grid>
       </BrowserRouter>
     );
   }
-
 }
 
-export default connect(null, actions)(App);
+const mapStateToProps = (state) => {
+  return {
+    sidebarClicked: state.sidebarClicked
+  }
+}
+
+export default connect(mapStateToProps, actions)(App);

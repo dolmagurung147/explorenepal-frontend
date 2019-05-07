@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Icon, Segment, Sidebar, Header, Image } from 'semantic-ui-react'
+import { Menu, Icon, Header } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
 const SidebarMenu = (props) => {
@@ -23,7 +23,7 @@ const SidebarMenu = (props) => {
 
   const loggedInNavBar = () => {
     return (
-      <div>  
+      <div>
           <Menu.Item as='a' as={Link} to='/myProfile'>
           <Icon name='user circle' />
           My Profile

@@ -36,6 +36,7 @@
   width: 100%;
   background: rgba(173,216,230);
   height: 42px;
+  z-index: 3;
 }
 
 #topSpacing {
@@ -43,6 +44,7 @@
 }
 
 .explore {
-  margin: auto;
+  margin: 54px auto auto auto;
   width: 50%;
+  z-index: 1;
 }
