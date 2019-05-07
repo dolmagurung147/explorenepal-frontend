@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Icon, Header } from 'semantic-ui-react'
+import { Menu, Icon, Header, Divider, Segment } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
 const SidebarMenu = (props) => {
@@ -9,13 +9,13 @@ const SidebarMenu = (props) => {
     if (props.whoIsLoggedIn === 'tourist') {
       return (
         <Menu.Item name='placesIVisited' as='a' as={Link} to="/placesIVisited">
-          <Icon name='globe' /> Places I have vistited
+          <h4><Icon name='globe' /> Places I have vistited</h4>
         </Menu.Item>
       )
     } else if (props.whoIsLoggedIn === 'tour_guide') {
       return (
         <Menu.Item name='touristsGuided' as='a' as={Link} to="/touristsGuided">
-          <Icon name='users' />  Tourists I have guided
+          <h4><Icon name='users' /> Tourists I have guided</h4>
         </Menu.Item>
       )
     }
@@ -25,17 +25,20 @@ const SidebarMenu = (props) => {
     return (
       <div>
           <Menu.Item as='a' as={Link} to='/myProfile'>
-          <Icon name='user circle' />
-          My Profile
+          <h4><Icon name='user circle' />
+          My Profile</h4>
           </Menu.Item>
+          <Divider inverted />
           <Menu.Item as='a' as={Link} to='/myAppointments'>
-            <Icon name='th list' />
-            My Appointments
+            <h4><Icon name='th list' />
+            My Appointments</h4>
           </Menu.Item>
+          <Divider inverted />
           <Menu.Item as='a' as={Link} to='/myRequests'>
-            <Icon name='comment alternate outline' />
-            My Requests
+            <h4><Icon name='comment alternate outline' />
+            My Requests</h4>
           </Menu.Item>
+          <Divider inverted />
             {props.whoIsLoggedIn ? check(props) : null}
       </div>
     )
@@ -44,7 +47,7 @@ const SidebarMenu = (props) => {
 
   return (
     <div>
-      {props.loggedin ? loggedInNavBar() : null}
+        {props.loggedin ? loggedInNavBar() : null}
     </div>
   )
 }
