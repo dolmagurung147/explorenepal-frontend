@@ -49,3 +49,12 @@
   z-index: 1;
   align: center;
 }
+
+.manageTopMargin {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.sidebarMenu {
+  position: fixed;
+}

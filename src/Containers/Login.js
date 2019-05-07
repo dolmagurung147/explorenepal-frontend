@@ -108,7 +108,11 @@ class Login extends React.Component {
   }
 
   render(){
-    return this.state.newUser? this.signupFormHandler() : this.loginFormHandler()
+    return (
+      <div className='manageTopMargin'>
+        {this.state.newUser? this.signupFormHandler() : this.loginFormHandler()}
+      </div>
+    )
   }
 }
 

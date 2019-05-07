@@ -26,8 +26,8 @@ class App extends Component {
           <Grid.Row>
             <NavBar />
           </Grid.Row>
-            {this.props.sidebarClicked ? <Grid.Row ><Grid.Column width={3} style={{marginTop: '54px'}}>
-            <SidebarMenu />
+            {this.props.sidebarClicked && this.props.loggedin ? <Grid.Row ><Grid.Column width={3} style={{marginTop: '54px'}}>
+            <SidebarMenu/>
             </Grid.Column>
             <Grid.Column width={13}> <MainContainer/></Grid.Column></Grid.Row> : <Grid.Row><Grid.Column width={16}><MainContainer/></Grid.Column></Grid.Row>}
         </Grid>
@@ -38,6 +38,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    loggedin: state.loggedin,
     sidebarClicked: state.sidebarClicked
   }
 }

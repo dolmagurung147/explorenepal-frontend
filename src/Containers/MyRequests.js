@@ -14,7 +14,7 @@ const MyRequests = (props) => {
   }
 
   return (
-    <div>
+    <div className='manageTopMargin'>
       MY REQUESTS <br/><br/>
       <Card.Group>
         {myRequestCardsArr()}

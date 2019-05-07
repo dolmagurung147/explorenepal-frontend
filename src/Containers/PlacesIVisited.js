@@ -53,12 +53,10 @@ class PlacesIVisited extends Component {
 
   render() {
     return (
-      <>
+      <div className='manageTopMargin'>
       <h1>PLACES I VISITED </h1>
-      <div>
       {this.props.placesIVisited.length > 0 ? this.individualCardPlace() : this.noPlaceVisited()}
       </div>
-      </>
     )
   }
 }

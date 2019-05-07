@@ -21,7 +21,7 @@ const MyAppointments = (props) => {
 
   return (
 
-    <div>
+    <div className='manageTopMargin'>
       <h1>MY APPOINTMENTS </h1>
       {props.myAppointments.length > 0 ?  myAppointmentCards() : noAppointmentYet() }
     </div>
