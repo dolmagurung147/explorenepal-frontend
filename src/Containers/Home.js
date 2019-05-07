@@ -14,8 +14,8 @@ class Home extends Component {
   allDestinations = () => {
     return (
       <div>
-        <Explore destinationChosen={this.destinationChosen} />
         <TopDestinations destinationChosen={this.destinationChosen}/>
+        <Explore destinationChosen={this.destinationChosen} />
       </div>
     )
   }

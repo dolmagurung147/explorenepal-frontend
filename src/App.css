@@ -11,6 +11,8 @@
 /* #welcome {
   opacity: 1;
   z-index: 3;
+  text-align: center;
+  margin-top: 96px;
 }
 
 #mainPage {
@@ -24,12 +26,9 @@
   width: 100%;
   position: relative;
   z-index: 1;
+  position: fixed;
 } */
 
-
-.h1 {
-  margin-top: -1000px;
-}
 
 .NavBar {
   position: fixed;
@@ -40,14 +39,11 @@
 }
 
 #topSpacing {
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 
 .explore {
-  margin: 54px auto auto auto;
-  width: 50%;
-  z-index: 1;
-  align: center;
+  margin-top: 54px;
 }
 
 .manageTopMargin {
@@ -55,6 +51,27 @@
   text-align: center;
 }
 
+.myCarousel {
+  height: 500px;
+}
+
 .sidebarMenu {
   position: fixed;
 }
+
+.right.menu.loginLogoutBtn {
+  margin-right: 30px;
+}
+
+
+/* Explore cards for the home page  */
+#exploreCardContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.eachDestinationCard {
+  margin: 1%;
+}
+/* ********************************** */

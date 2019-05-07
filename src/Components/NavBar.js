@@ -20,7 +20,7 @@ const NavBar = (props) => {
         <Menu.Item name='Home' as='a' as={Link} to="/home">
           <Icon name='home' /> Home
         </Menu.Item>
-        {props.loggedin ? <Menu.Menu position='right'><Menu.Item name='Logout' as={Link} to='/' onClick={() => logOut(props)} /> </Menu.Menu> : <Menu.Menu position='right'><Menu.Item name='Login/Signup' as={Link} to='/login'/></Menu.Menu>}
+        {props.loggedin ? <Menu.Menu position='right' className='loginLogoutBtn'><Menu.Item name='Logout' as={Link} to='/' onClick={() => logOut(props)} /> </Menu.Menu> : <Menu.Menu position='right'><Menu.Item name='Login' as={Link} to='/login'/></Menu.Menu>}
       </Menu>
     </header>
   )

@@ -9,7 +9,7 @@ const DestinationCard = (props) => {
   }
 
   return(
-    <div>
+    <div className='eachDestinationCard'>
       <img src={image.image} alt='' onClick={imageClickHandler}/>
       <br />
       {props.destination.name}
