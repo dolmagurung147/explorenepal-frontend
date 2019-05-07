@@ -30,14 +30,14 @@ class MainContainer extends Component {
   render(){
     return (
           <Switch>
-            <Route  path ="/home" render={()=> <Home className='topSpacing'/ >}/>
-            <Route  path="/login" render={()=> <Login className='topSpacing'/>}/>
+            <Route  path ="/home" render={()=> <Home / >}/>
+            <Route  path="/login" render={()=> <Login />}/>
             <Route  path="/myAppointments" render={()=> <MyAppointments />}/>
             <Route  path="/myProfile" render={()=> <MyProfile />}/>
             <Route  path="/placesIVisited" render={()=> <PlacesIVisited />}/>
             <Route  path="/touristsGuided" render={()=> <TouristsGuided />}/>
             <Route  path="/myRequests" render={()=> <MyRequests />}/>
-            <Route  path="/" render={()=> <MainPage id='mainPage'className='topSpacing'/>}/>
+            <Route  path="/" render={()=> <MainPage />}/>
           </Switch>
 
     )

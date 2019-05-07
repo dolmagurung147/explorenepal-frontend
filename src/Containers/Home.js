@@ -13,10 +13,12 @@ class Home extends Component {
 
   allDestinations = () => {
     return (
-      <div>
+      <>
+      <div style={{margin: '3%'}}>
         <TopDestinations destinationChosen={this.destinationChosen}/>
-        <Explore destinationChosen={this.destinationChosen} />
       </div>
+      <div> <Explore destinationChosen={this.destinationChosen} /> </div>
+      </>
     )
   }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { Button, Form, Card } from 'semantic-ui-react'
 
 import TouristSignup from '../Components/TouristSignup'
 import TourGuideSignup from '../Components/TourGuideSignup'
@@ -68,17 +69,25 @@ class Login extends React.Component {
 
   touristLoginForm = () => {
     return (
-      <div>
+      <div >
         <h1> Tourist Login Form </h1>
-        <form onSubmit={this.touristLoginFormHandler}>
-          Username: <input type="text" name="username" onChange={this.usernameOnchangeHandler}/>
-          Password: <input type="password" name="password" onChange={this.passwordOnchangeHandler}/>
-          <button> Submit </button>
-        </form>
-
-        <button onClick={this.touristSignupPageHandler}> New Tourist? </button>
-        <button onClick={this.changeLoginPageHandler}> Not Tourist But a Tourguide? </button>
-      </div>
+        <Card className='loginForm'>
+          <Card.Content>
+            <Form className='loginFormWidth'>
+              <Form.Input label='Username' icon='user' iconPosition='left' type="text" name="username" onChange={this.usernameOnchangeHandler}/>
+              <Form.Input label='Password' icon='lock' iconPosition='left' type="password" name="password" onChange={this.passwordOnchangeHandler}/>
+              <br/>
+              <Button basic color='blue' onClick={this.touristLoginFormHandler}> Login </Button>
+            </Form>
+            </Card.Content>
+            <Card.Content extra>
+            <div className='ui two buttons'>
+            <Button basic color='blue' onClick={this.touristSignupPageHandler}> New Tourist? </Button>
+            <Button basic color='blue' onClick={this.changeLoginPageHandler}> Not Tourist But a Tourguide? </Button>
+            </div>
+          </Card.Content>
+        </Card>
+    </div>
     )
   }
 

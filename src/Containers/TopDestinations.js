@@ -11,7 +11,7 @@ const TopDestinations = (props) => {
 
   const topDestinationsCardArr = () => {
       return props.topDestinations.map(destinationObj => {
-        return <DestinationCard key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
+        return <DestinationCard width={'800px'} height={'500px'} key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
       })
   }
 
