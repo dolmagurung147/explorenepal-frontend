@@ -115,9 +115,15 @@ h4 h2 {
 
 /****************************************  */
 
-/************ LOGIN FORM *****************  */
+/************ LOGIN AND SIGNUP FORM *****************  */
 .ui.card.loginForm {
   margin-left: 42%;
+}
+
+.ui.card.signUpForm {
+  margin-left: 25%;
+  margin-right: 25%;
+  width: auto;
 }
 
 

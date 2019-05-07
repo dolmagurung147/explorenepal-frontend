@@ -49,14 +49,15 @@ const reducer = (state=initialState, action) => {
     case FETCH_DESTINATIONS:
       return{...state, destinations: action.payload}
     case SIGNUPUSER:
+      debugger
       let currentUser = action.payload.tour_guide ? "tour_guide" : "tourist"
       return{...state,
         loggedin: true,
         whoIsLoggedIn: currentUser,
-        loggedInuserInfo: action.payload.user,
-        myAppointments: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
-        placesIVisited: action.payload.user ? action.payload.user.appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : [],
-        requestForAppointments: action.payload.user ? action.payload.user.request_for_appointments : null
+        loggedInuserInfo: action.payload[currentUser],
+        myAppointments: action.payload[currentUser] ? action.payload[currentUser].appointments.filter(app => Date.parse(app.date_and_time) > Date.now()) : [] ,
+        placesIVisited: action.payload[currentUser] ? action.payload[currentUser].appointments.filter(app => Date.parse(app.date_and_time) < Date.now()) : [],
+        requestForAppointments: action.payload[currentUser] ? action.payload[currentUser].request_for_appointments : null
        }
     case LOGINUSER:
       let userType = action.payload.userType
