@@ -95,8 +95,10 @@ class MyAppointmentCard extends Component{
           Date: {this.props.myAppointment.date_and_time.split('T')[0]} <br/>
           Time: {this.props.myAppointment.date_and_time.split('T')[1]} <br/>
           {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name}</p>} <br/>
-          <Button primary onClick={this.editAppointmentHandler}>Edit This Appointment </Button> <br/> <br/>
-          <Button color='red' onClick={this.deleteAppointmentHandler}>Delete This Appointment </Button> <br/>
+          <div className='ui two buttons'>
+          <Button basic color='blue' onClick={this.editAppointmentHandler}>Edit This Appointment </Button> <br/> <br/>
+          <Button basic color='red' onClick={this.deleteAppointmentHandler}>Delete This Appointment </Button> <br/>
+          </div>
         </Card>
       )
     }

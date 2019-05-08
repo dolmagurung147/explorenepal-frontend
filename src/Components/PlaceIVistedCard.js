@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
+
+import { withRouter } from 'react-router-dom'
 
 class PlaceIVistedCard extends Component{
 
@@ -71,7 +74,11 @@ class PlaceIVistedCard extends Component{
       })
     })
     .then (res => res.json())
-    .then (review => console.log(review))
+    .then (review => this.props.addNewDestinationReview(review))
+    this.setState({
+      reviewDestination: false
+    })
+
   }
   // ------------ End for destination rating ----------
 
@@ -101,6 +108,9 @@ class PlaceIVistedCard extends Component{
     })
     .then (res => res.json())
     .then (review => console.log(review))
+    this.setState({
+      reviewTourGuide: false
+    })
   }
 
   // ------------- END OF Tour Guide Rating----------------
@@ -159,4 +169,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(PlaceIVistedCard)
+export default connect(mapStateToProps, actions)(PlaceIVistedCard)

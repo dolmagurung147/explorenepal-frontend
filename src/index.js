@@ -22,6 +22,8 @@ import { FETCH_DESTINATIONS,
   ADDREQUESTFORAPPOINTMENTS,
   DELETEREQUESTFORAPPOINTMENTS,
   TOGGLESIDEBAR,
+  ADDNEWREVIEW,
+  ADDNEWTOURISTREVIEW,
 } from './actions/types'
 import thunk from 'redux-thunk'
 
@@ -45,6 +47,9 @@ const initialState = {
 }
 
 const reducer = (state=initialState, action) => {
+  // action.payload will look like {id: 19, destiation_id: 2, comment: "Beautiful peaceful place"}
+  // ADD_REVIEW
+
   switch (action.type){
     case FETCH_DESTINATIONS:
       return{...state, destinations: action.payload}
@@ -103,6 +108,14 @@ const reducer = (state=initialState, action) => {
       return {...state, requestForAppointments: state.requestForAppointments.filter(request => request.id !== action.payload.id)}
     case TOGGLESIDEBAR:
       return {...state, sidebarClicked: !state.sidebarClicked}
+    case ADDNEWREVIEW:
+      const newdestination = state.destinations.length ? state.destinations.find(destination => destination.id === action.payload.destination_id) : null
+      newdestination.reviews.push(action.payload)
+      return {...state, destinations: [...state.destinations.filter(destination => destination.id !== newdestination.id), newdestination].sort((a,b) => a.id - b.id)}
+    case ADDNEWTOURISTREVIEW:
+      const newTourist = state.allTourists.length ? state.allTourists.find(tourist => tourist.id === action.payload.tourist_id) : null
+      newTourist.reviews.push(action.payload)
+      return {...state, allTourists: [...state.allTourists.filter(tourist => tourist.id !== newTourist.id), newTourist].sort((a,b) => a.id - b.id)}
     default:
       return state
   }

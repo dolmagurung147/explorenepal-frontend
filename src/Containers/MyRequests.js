@@ -14,9 +14,9 @@ const MyRequests = (props) => {
   }
 
   return (
-    <div className='manageTopMargin'>
-      MY REQUESTS <br/><br/>
-      <Card.Group>
+    <div className='manageTopMargin mainContainer' style={{height: '910px'}}>
+      <h1>MY REQUESTS</h1> <br/><br/>
+      <Card.Group className='touristIguided'>
         {myRequestCardsArr()}
       </Card.Group>
     </div>

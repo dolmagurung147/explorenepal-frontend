@@ -14,7 +14,9 @@ import {
   FETCHTOPDESTINATIONS,
   ADDREQUESTFORAPPOINTMENTS,
   DELETEREQUESTFORAPPOINTMENTS,
-  TOGGLESIDEBAR
+  TOGGLESIDEBAR,
+  ADDNEWREVIEW,
+  ADDNEWTOURISTREVIEW,
 } from './types'
 
 export const fetchDestinations = () => {
@@ -262,5 +264,17 @@ export const fetchTopDestinations = () => {
 export const toggleSidebarClick = () => {
   return dispatch => {
     dispatch({type: TOGGLESIDEBAR})
+  }
+}
+
+export const addNewDestinationReview = (newReview) => {
+  return dispatch => {
+    dispatch({type: ADDNEWREVIEW, payload: newReview})
+  }
+}
+
+export const addNewTouristReview = (newReview) => {
+  return dispatch => {
+    dispatch({type: ADDNEWTOURISTREVIEW, payload: newReview})
   }
 }

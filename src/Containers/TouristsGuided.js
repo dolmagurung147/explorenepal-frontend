@@ -25,10 +25,14 @@ class TouristsGuided extends Component {
 
   render(){
     return (
-      <div>
-      <h1> TOURISTS THAT I HAVE WORKED WITH </h1>
+      <>
+      <div className='manageTopMargin ' style={{backgroundImage: "url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png')", backgroundPositionX: '56%'}}>
+       <br/><h1> TOURISTS THAT I HAVE WORKED WITH </h1>
+      </div>
+      <div className='mainContainer touristIguided' style={{height: '900px'}}>
       {this.props.allTourists.length > 0 ? this.findTouristsThatIGuided() : null}
       </div>
+      </>
     )
   }
 }

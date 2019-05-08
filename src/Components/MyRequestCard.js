@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Icon, Button, Card, Image } from 'semantic-ui-react'
 
 class MyRequestCard extends Component {
 
@@ -28,11 +28,25 @@ class MyRequestCard extends Component {
     this.props.deleteRequest(this.props.request.id)
   }
 
+  aboutTourGuide = () => {
+    if (this.props.allTourGuides.length) {
+      let foundTourGuide = this.props.allTourGuides.find(tourGuide => {
+        return tourGuide.id === this.props.request.tour_guide_id
+      })
+      return foundTourGuide
+    }
+  }
+
   showTouristOptions = () => {
+    console.log(this.aboutTourGuide());
     return (
-      <>
-        <button onClick={this.cancelRequestHandler}>Cancel this request</button>
-      </>
+      <div>
+        <Card.Header><Icon name='user' /> {this.aboutTourGuide() ? this.aboutTourGuide().name : null} </Card.Header>
+        <Card.Meta> Destination: {this.destinationName()}</Card.Meta> <br/>
+        <Card.Description>Date : {this.props.request.date_and_time.split('T')[0]}<br/>
+        Time : {this.props.request.date_and_time.split('T')[1]}<br/> </Card.Description>
+        <Button color='red' onClick={this.cancelRequestHandler}>Cancel this request</Button >
+      </div>
     )
   }
 
@@ -68,7 +82,8 @@ class MyRequestCard extends Component {
         size='mini'
         src={this.aboutTourist() ? this.aboutTourist().profile_picture : null}
         />
-        <Card.Header> {this.aboutTourist() ? this.aboutTourist().name : null} </Card.Header>
+        <Card.Header> <Icon name='user' />{this.aboutTourist() ? this.aboutTourist().name : null} </Card.Header>
+        <Card.Header> {this.aboutTourist() ? this.aboutTourist().avgrating : null} <Icon name='star'/></Card.Header>
         <Card.Meta> Destination: {this.destinationName()}</Card.Meta> <br/>
         <Card.Description>Date : {this.props.request.date_and_time.split('T')[0]}<br/>
         Time : {this.props.request.date_and_time.split('T')[1]}<br/> </Card.Description>

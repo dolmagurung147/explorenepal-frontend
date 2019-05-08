@@ -3,11 +3,11 @@ import { Button } from 'semantic-ui-react'
 
 const ShowMyProfile = (props) => {
   return (
-    <div className='manageTopMargin'>
+    <div className='manageTopMargin manageHeight'>
       <h1>MY Profile </h1>
 
       <div className='profileInfo'>
-        <div className='manageTopMargin'>
+        <div className='manageTopMargin '>
           <h2>{props.userInfo.name} </h2>
           <img src={props.userInfo.profile_picture} alt=''/>
           <h4>Username : {props.userInfo.username}</h4>

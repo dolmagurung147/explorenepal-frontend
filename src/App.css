@@ -82,11 +82,11 @@ h4 h2 {
 .myProfile {
   align: center;
   margin: 2%;
+  height: auto;
 }
 
 .profileInfo {
   border-style: ridge;
-  height: 800px;
   margin: auto 20%;
   background-color: rgba(226, 232, 237, 0.85);
 }
@@ -96,6 +96,7 @@ h4 h2 {
   height: 800px;
   margin: 3% 20%;
   background-color: rgba(226, 232, 237, 0.85);
+    height: auto;
 }
 
 .editProfileForm {
@@ -130,6 +131,8 @@ h4 h2 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-height: 500px;
+  overflow: auto;
 }
 
 #secondRow:before {
@@ -191,6 +194,10 @@ h4 h2 {
 
 /****************************************  */
 
+/* MY EDIT PROFILE */
+.manageHeight{
+  height: 915px;
+}
 .welcome {
   padding-top: 400px;
 }
@@ -215,4 +222,11 @@ h4 h2 {
   background-color:rgb(134, 184, 224,0.6);
     height: auto;
     position: relative;
+}
+
+/********** TOURIST I GUIDED *********  */
+.touristIguided{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

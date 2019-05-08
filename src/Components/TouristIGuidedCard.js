@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 class TouristIGuidedCard extends Component {
 
@@ -48,7 +49,10 @@ class TouristIGuidedCard extends Component {
       })
     })
     .then (res => res.json())
-    .then (reviewFORtourist => console.log(reviewFORtourist))
+    .then (reviewFORtourist => this.props.addNewTouristReview(reviewFORtourist))
+    this.setState({
+      rateButtonClicked: false
+    })
   }
 
   viewRatingAndReviewColumns = () => {
@@ -86,4 +90,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(TouristIGuidedCard)
+export default connect(mapStateToProps, actions)(TouristIGuidedCard)

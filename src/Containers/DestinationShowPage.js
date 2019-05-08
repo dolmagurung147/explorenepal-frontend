@@ -64,7 +64,7 @@ class DestinationShowPage extends Component {
         <Grid celled='internally' id='secondRow'>
           <Grid.Row >
             <Grid.Column width={8}>
-              {this.props.chosenDestination ?<img src={this.props.chosenDestination.destination_images[0].image} alt=''/> : null}
+              {this.props.chosenDestination ?<img style={{maxHeight: '500px'}} src={this.props.chosenDestination.destination_images[0].image} alt=''/> : null}
             </Grid.Column>
             <Grid.Column width={8} >
               <div className='eachDestinationShowPageImages'>

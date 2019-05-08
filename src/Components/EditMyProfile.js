@@ -27,7 +27,7 @@ class EditMyProfile extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className='manageTopMargin'>
+      <div className='manageTopMargin manageHeight'>
         <h1>Edit My Profile </h1>
         <div className='editProfileInfo'>
           <div className='editProfileForm'>
