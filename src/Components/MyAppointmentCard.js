@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import { Card, Image } from 'semantic-ui-react'
+
 class MyAppointmentCard extends Component{
 
   state = {
@@ -76,18 +78,18 @@ class MyAppointmentCard extends Component{
   individualAppointmentInfo = (destinationInfo, userInfo) => {
     if (this.state.editButtonClicked) {
       return (
-        <div>
+        <Card >
           <h1>{destinationInfo.name}</h1> <br/>
-          <img src={destinationInfo.destination_images[0].image} alt=''/>  <br/>
+          <Image src={destinationInfo.destination_images[0].image} wrapped alt='' />  <br/>
           Date: <input type='date' value={this.state.editedDate} name='editedDate' onChange={this.dateAndTimeChangeHandler}/> <br/>
           Time: <input type='time' value={this.state.editedTime} name='editedTime' onChange={this.dateAndTimeChangeHandler}/> <br/>
           {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name} </p>} <br/>
           <button onClick={this.saveEditedAppointmentHandler}>Save Changes </button> <br/> <br/>
-        </div>
+        </Card>
       )
     } else {
       return (
-        <div>
+        <Card>
           <h1>{destinationInfo.name}</h1> <br/>
           <img src={destinationInfo.destination_images[0].image} alt=''/>  <br/>
           Date: {this.props.myAppointment.date_and_time.split('T')[0]} <br/>
@@ -95,7 +97,7 @@ class MyAppointmentCard extends Component{
           {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name}</p>} <br/>
           <button onClick={this.deleteAppointmentHandler}>Delete This Appointment </button> <br/>
           <button onClick={this.editAppointmentHandler}>Edit This Appointment </button> <br/> <br/>
-        </div>
+        </Card>
       )
     }
   }

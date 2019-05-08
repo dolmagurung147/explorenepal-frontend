@@ -64,12 +64,14 @@ h4 h2 {
   border-style: ridge;
   height: 800px;
   margin: auto 20%;
+  background-color: rgba(226, 232, 237, 0.85);
 }
 
 .editProfileInfo {
   border-style: ridge;
-  height: 500px;
+  height: 800px;
   margin: 3% 20%;
+  background-color: rgba(226, 232, 237, 0.85);
 }
 
 .editProfileForm {

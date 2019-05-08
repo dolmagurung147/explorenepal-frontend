@@ -29,7 +29,7 @@ class MyProfile extends Component {
 
   render() {
     return (
-      <div>
+      <div className='mainContainer '>
         {this.state.editButtonClicked ?
           <EditMyProfile
           saveChanges={this.saveEditProfileHandler}

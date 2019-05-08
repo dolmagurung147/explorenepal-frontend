@@ -39,7 +39,7 @@ class EditMyProfile extends Component {
               <Form.TextArea label='Short Bio' type="text" value={this.state.short_bio} name='short_bio' onChange={this.userInfoChangeHandler} />
                 <Form.Input label='Profile Picture' type="text" value={this.state.profile_picture} name='profile_picture' onChange={this.userInfoChangeHandler}/>
                 <Form.Input label='Date of Birth:' type="date" value={this.state.date_of_birth} name='date_of_birth' onChange={this.userInfoChangeHandler}/>
-              <Button basic color='blue' onClick={this.saveEditButtonClickHandler}>Save</Button>
+              <Button primary onClick={this.saveEditButtonClickHandler}>Save</Button>
             </Form>
           </div>
         </div>

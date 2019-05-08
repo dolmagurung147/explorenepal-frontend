@@ -13,7 +13,7 @@ const ShowMyProfile = (props) => {
           <h4>Username : {props.userInfo.username}</h4>
           <h4>Short-Bio: {props.userInfo.short_bio}</h4>
           <h4>Date of Birth: {props.userInfo.date_of_birth}</h4> <br />
-          <Button basic color='blue' onClick={props.editMyProfileHandler}> EDIT MY PROFILE </Button>
+          <Button primary onClick={props.editMyProfileHandler}> EDIT MY PROFILE </Button>
         </div>
       </div>
     </div>

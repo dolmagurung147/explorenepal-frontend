@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import MyAppointmentCard from '../Components/MyAppointmentCard'
 
+
 const MyAppointments = (props) => {
   const myAppointmentCards = () => {
       return (
@@ -20,7 +21,6 @@ const MyAppointments = (props) => {
   }
 
   return (
-
     <div className='manageTopMargin'>
       <h1>MY APPOINTMENTS </h1>
       {props.myAppointments.length > 0 ?  myAppointmentCards() : noAppointmentYet() }
