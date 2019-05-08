@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import { withRouter } from 'react-router-dom'
+
 import { Form, Button, Card } from 'semantic-ui-react'
 
 class TourGuideSignup extends React.Component {
@@ -59,4 +61,4 @@ class TourGuideSignup extends React.Component {
   }
 }
 
-export default connect(null, actions )(TourGuideSignup)
+export default withRouter(connect(null, actions )(TourGuideSignup))

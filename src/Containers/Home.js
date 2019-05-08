@@ -29,7 +29,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className='mainContainer'>
       {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage/>}
       </div>
     )

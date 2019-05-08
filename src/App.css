@@ -1,37 +1,3 @@
-
-
-/* .mainPage {
-  height: 1000px;
-  background-image: url("https://lonelyplanetwp.imgix.net/2012/01/8025995258_0336edab9e_o.jpg?fit=min&q=40&sharp=10&vib=20&w=1470");
-  background-repeat: no-repeat;
-  background-size: 1000px;
-  opacity: .5;
-} */
-
-/* #welcome {
-  opacity: 1;
-  z-index: 3;
-  text-align: center;
-  margin-top: 96px;
-}
-
-
-
-#mainPage {
-  opacity: 0.75;
-  background-image: url("https://lonelyplanetwp.imgix.net/2012/01/8025995258_0336edab9e_o.jpg?fit=min&q=40&sharp=10&vib=20&w=1470") ;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  height: 800px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  position: fixed;
-} */
-
-
 .NavBar {
   position: fixed;
   width: 100%;
@@ -87,6 +53,7 @@ h4 h2 {
   font-family: 'Gilda Display', serif;
 }
 
+
 /*  SHOW MY PROFILE PAGE ..............  */
 .myProfile {
   align: center;
@@ -112,12 +79,16 @@ h4 h2 {
 /****************************************  */
 
 /*********TOP DESTINATION CARD **********  */
-
+.eachDestinationCard {
+  box-shadow: 5px 6px 5px 6px #888888;
+  /* background-color: rgb(102, 188, 210,0.5); */
+  background-image: url('https://images.unsplash.com/photo-1489537235181-fc05daed5805?ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80')
+}
 /****************************************  */
 
 /************ LOGIN AND SIGNUP FORM *****************  */
 .ui.card.loginForm {
-  margin-left: 42%;
+  margin-left: 40%;
 }
 
 .ui.card.signUpForm {
@@ -125,10 +96,61 @@ h4 h2 {
   margin-right: 25%;
   width: auto;
 }
+/****************************************  */
 
+
+/**********DESTINATION SHOW PAGE**********  */
+.eachDestinationShowPageImages {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#secondRow {
+  /* background-color: rgb(73, 188, 213); */
+  background-image: url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png');
+  background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.firstcolumn {
+  border-style: ridge;
+  border-radius: auto;
+  /* background-color: rgba(18, 152, 194, 0.70) */
+  background-color: rgba(226, 232, 237, 0.85)
+}
+
+.ui.card.moreImages {
+  margin: 2%;
+}
+
+.reviewObjects {
+  font-family: 'Markazi Text', serif;
+  font-size: 20px;
+}
+
+.manageDestinationTopMargin {
+  margin-top: 50px;
+}
+
+.backButton {
+  margin-left: 85%;
+}
 
 /****************************************  */
 
 .welcome {
   padding-top: 400px;
+}
+
+.mainContainer {
+ background-image: url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png');
+ /* position: fixed; */
+ background-repeat: no-repeat;
+ background-size: cover;
+ /* margin-left: -15px; */
+ /* width: 100%; */
+ /* height: 100%; */
+/* opacity: 0.7; */
+/* z-index: -1; */
 }

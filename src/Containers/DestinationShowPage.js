@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
-import ViewAppointmentForm from '../Components/ViewAppointmentForm'
 import * as actions from '../actions'
+import { Grid, Image, Button, Card } from 'semantic-ui-react'
+
+import ViewAppointmentForm from '../Components/ViewAppointmentForm'
+import RatingConversion from '../Components/RatingConversion'
 
 class DestinationShowPage extends Component {
   state = {
@@ -16,7 +19,7 @@ class DestinationShowPage extends Component {
 
   destinationImages = () => {
     return this.props.chosenDestination.destination_images.map((imageObj) => {
-      return <img key={imageObj.id} src={imageObj.image} alt=""/>
+      return <Card className='moreImages' key={imageObj.id}><Image src={imageObj.image} alt="" style={{margin: '3%'}}/></Card>
       })
   }
 
@@ -39,7 +42,7 @@ class DestinationShowPage extends Component {
     }
     else {
       return (
-        <button onClick={this.viewAppointmentForm}> Book This Destination </button>
+        <Button primary onClick={this.viewAppointmentForm}> Book This Destination </Button >
       )
     }
   }
@@ -50,38 +53,55 @@ class DestinationShowPage extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
-      <div>
-        <div>
-          {this.props.chosenDestination.name}
-          {this.props.loggedIn && this.props.whoIsLoggedIn === 'tourist' ? this.booknow() : null}
-          {this.props.chosenDestination ?<img src={this.props.chosenDestination.destination_images[0].image} alt=''/> : null}
+      <div className='manageDestinationTopMargin'>
+        <div className='backButton'>
+        <Button  primary onClick={this.exploreBackButtonHandler}> BACK TO HOMEPAGE</Button>
         </div>
-        <div>
-          {this.destinationImages()}
-        </div>
-        <div>
-          <h2> About: </h2>
-          <p> Location: {this.props.chosenDestination.location} </p>
-          <p> Difficulty-level: {this.props.chosenDestination.difficulty_level}</p>
-          <p> Cost for this Destination: $ {this.props.chosenDestination.costForThisDestination}</p>
-          <p> Short Description: {this.props.chosenDestination.about}</p>
-          <p> Best Time To Visit:{this.props.chosenDestination.best_time_to_visit}</p>
-        </div>
-        <div>
-          <h2> Reviews and Rating: </h2>
-          <p> Average Rating: {this.props.chosenDestination.avgrating}</p>
-           {this.props.chosenDestination.reviews.map(reviewObj => {
-            return (
-              <div key={reviewObj.id}>
-                <h3> Reviewed By: {this.props.tourist? this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name : null}</h3>
-                Rating : {reviewObj.rating} <br/>
-                Review: {reviewObj.review}
+        <h1 style={{textAlign: 'center'}}>{this.props.chosenDestination.name}</h1>
+        <div style={{textAlign: 'center'}}>{this.props.loggedIn && this.props.whoIsLoggedIn === 'tourist' ? this.booknow() : null}</div>
+        <div className='ui divider'>
+        <Grid celled='internally' id='secondRow'>
+          <Grid.Row>
+            <Grid.Column width={8}>
+              {this.props.chosenDestination ?<img src={this.props.chosenDestination.destination_images[0].image} alt=''/> : null}
+            </Grid.Column>
+            <Grid.Column width={8} >
+              <div className='eachDestinationShowPageImages'>
+                {this.destinationImages()}
               </div>
-            )
-          })}
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row >
+            <Grid.Column width={8}>
+              <div className='firstcolumn'>
+              <h1> About: </h1>
+              <h4> Location: {this.props.chosenDestination.location} </h4>
+              <h4> Difficulty-level: {this.props.chosenDestination.difficulty_level}</h4>
+              <h4> Cost for this Destination: $ {this.props.chosenDestination.costForThisDestination}</h4>
+              <h4> Short Description: {this.props.chosenDestination.about}</h4>
+              <h4> Best Time To Visit:{this.props.chosenDestination.best_time_to_visit}</h4>
+              </div>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <div className='firstcolumn'>
+                <h1> Reviews and Rating: </h1>
+                <h4> Average Rating: {this.props.chosenDestination.avgrating}</h4>
+                {this.props.chosenDestination.reviews.map(reviewObj => {
+                return (
+                  <div key={reviewObj.id} style={{borderStyle:'ridge', textAlign:'left'}}>
+                    <div className='reviewObjects'>Reviewed By: {!this.props.allTourists.length? null : this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name} <br/>
+                    Rating : {reviewObj.rating} <br/>
+                    Review: {reviewObj.review}</div>
+                  </div>
+                  )
+                })}
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         </div>
-        <button onClick={this.exploreBackButtonHandler}> BACK TO MAIN HOMEPAGE</button>
       </div>
     )
   }

@@ -1,9 +1,8 @@
 import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
 
-const DestinationCard = (props) => {
+const TopDestinationCard = (props) => {
   let imageArr = props.destination.destination_images
-  // let image = imageArr[Math.floor(Math.random()*imageArr.length)]
   let image = imageArr[2]
 
   function imageClickHandler() {
@@ -11,8 +10,8 @@ const DestinationCard = (props) => {
   }
 
   return(
-    <div className='eachDestinationCard'>
-      <Card style={{ margin: 'auto', width: `${props.width}` }}>
+    <div className='eachTopDestinationCard'>
+      <Card style={{ margin: 'auto', width: `${props.width}` , backgroundColor:'rgb(155, 217, 228)'}}>
       <Image src={image.image} alt='' onClick={imageClickHandler} style={{height: `${props.width ? 'auto' : '300px'}`, width: `${props.width}`}}/>
         <br />
         <h3 style={{fontFamily: 'Pacifico'}}>{props.destination.name}</h3></Card>
@@ -20,4 +19,4 @@ const DestinationCard = (props) => {
   )
 }
 
-export default DestinationCard
+export default TopDestinationCard

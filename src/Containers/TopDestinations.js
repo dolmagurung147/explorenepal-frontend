@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
-import DestinationCard from '../Components/DestinationCard'
+import TopDestinationCard from '../Components/TopDestinationCard'
 
 const TopDestinations = (props) => {
   console.log(props.topDestinations);
 
   const topDestinationsCardArr = () => {
       return props.topDestinations.map(destinationObj => {
-        return <DestinationCard width={'800px'} height={'500px'} key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
+        return <TopDestinationCard width={'800px'} height={'500px'} key={destinationObj.id} destination={destinationObj} destinationChosen={props.destinationChosen}/>
       })
   }
 

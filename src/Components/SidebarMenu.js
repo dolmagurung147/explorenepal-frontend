@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Icon, Header, Divider, Segment } from 'semantic-ui-react'
+import { Menu, Icon, Divider } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
 const SidebarMenu = (props) => {

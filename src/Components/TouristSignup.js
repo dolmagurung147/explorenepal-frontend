@@ -4,6 +4,8 @@ import * as actions from '../actions'
 
 import { withRouter } from 'react-router-dom'
 
+import { Form, Button, Card } from 'semantic-ui-react'
+
 class TouristSignup extends React.Component {
 
   state = {
@@ -28,20 +30,35 @@ class TouristSignup extends React.Component {
     this.props.history.push('/home')
   }
 
+  // <form onSubmit={this.onSubmitHandler}>
+  // Name: <input type="text" name="name" onChange={this.onChangeHandler} />
+  // Profile Picture: <input type="text" name="profile_picture" onChange={this.onChangeHandler} />
+  // Username: <input type="text" name="username" onChange={this.onChangeHandler} />
+  // Password: <input type="password" name="password" onChange={this.onChangeHandler} />
+  // Short-Bio: <input type="text" name="short_bio" onChange={this.onChangeHandler} />
+  // Picture-Id: <input type="text" name="picture_id" onChange={this.onChangeHandler} />
+  // DOB: <input type="date" name="date_of_birth" onChange={this.onChangeHandler} />
+  // <button> Signup </button>
+  // </form>
   render() {
     return (
       <div>
       <h1> TOURIST SIGNUP PAGE </h1>
-      <form onSubmit={this.onSubmitHandler}>
-      Name: <input type="text" name="name" onChange={this.onChangeHandler} />
-      Profile Picture: <input type="text" name="profile_picture" onChange={this.onChangeHandler} />
-      Username: <input type="text" name="username" onChange={this.onChangeHandler} />
-      Password: <input type="password" name="password" onChange={this.onChangeHandler} />
-      Short-Bio: <input type="text" name="short_bio" onChange={this.onChangeHandler} />
-      Picture-Id: <input type="text" name="picture_id" onChange={this.onChangeHandler} />
-      DOB: <input type="date" name="date_of_birth" onChange={this.onChangeHandler} />
-      <button> Signup </button>
-      </form>
+      <Card className='signUpForm'>
+        <Card.Content>
+          <Form>
+            <Form.Group widths='equal'>
+              <Form.Input fluid label='Name' type="text" value={this.state.name} name='name' onChange={this.onChangeHandler} placeholder='Name'/>
+              <Form.Input fluid label='Username' type="text" value={this.state.username} name='username' onChange={this.onChangeHandler} placeholder='Username'/>
+              <Form.Input fluid label='Password' type="password" value={this.state.password} name='password' onChange={this.onChangeHandler} placeholder='Password'/>
+            </Form.Group>
+            <Form.TextArea label='Short Bio' type="text" value={this.state.short_bio} name='short_bio' onChange={this.onChangeHandler} placeholder='About you....'/>
+              <Form.Input label='Profile Picture' type="text" value={this.state.profile_picture} name='profile_picture' onChange={this.onChangeHandler} placeholder='Profile Picture'/>
+              <Form.Input label='Date of Birth:' type="date" value={this.state.date_of_birth} name='date_of_birth' onChange={this.onChangeHandler} placeholder='DOB'/>
+            <Button basic color='blue' onClick={this.onSubmitHandler}> Signup </Button>
+          </Form>
+        </Card.Content>
+      </Card>
       </div>
     )
   }
