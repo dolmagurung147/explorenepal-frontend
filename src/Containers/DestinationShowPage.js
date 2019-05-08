@@ -88,12 +88,12 @@ class DestinationShowPage extends Component {
             <Grid.Column width={8}>
               <div className='firstcolumn'>
                 <h1> Reviews and Rating: </h1>
-                <h4> Average Rating: {this.props.chosenDestination.avgrating}</h4>
+                <h4> Average Rating: <RatingConversion rating={this.props.chosenDestination.avgrating} /></h4>
                 {this.props.chosenDestination.reviews.map(reviewObj => {
                 return (
                   <div key={reviewObj.id} style={{borderStyle:'ridge', textAlign:'left'}}>
                     <div className='reviewObjects'>Reviewed By:  {!this.props.allTourists.length? null : this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name} <Icon name='user circle'/> <br/>
-                    Rating : {reviewObj.rating} <br/>
+                    Rating : <RatingConversion rating={reviewObj.rating}/> <br/>
                     Review: {reviewObj.review}</div>
                   </div>
                   )

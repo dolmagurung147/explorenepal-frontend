@@ -230,3 +230,7 @@ h4 h2 {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.inputForm {
+  border-radius: 0.4em;
+}

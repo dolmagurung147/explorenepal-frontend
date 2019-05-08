@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import RatingConversion from './RatingConversion'
+
 import { Icon, Button, Card, Image } from 'semantic-ui-react'
 
 class MyRequestCard extends Component {
@@ -83,7 +85,7 @@ class MyRequestCard extends Component {
         src={this.aboutTourist() ? this.aboutTourist().profile_picture : null}
         />
         <Card.Header> <Icon name='user' />{this.aboutTourist() ? this.aboutTourist().name : null} </Card.Header>
-        <Card.Header> {this.aboutTourist() ? this.aboutTourist().avgrating : null} <Icon name='star'/></Card.Header>
+        <Card.Header> {this.aboutTourist() ? <RatingConversion rating={this.aboutTourist().avgrating}/> : null} </Card.Header>
         <Card.Meta> Destination: {this.destinationName()}</Card.Meta> <br/>
         <Card.Description>Date : {this.props.request.date_and_time.split('T')[0]}<br/>
         Time : {this.props.request.date_and_time.split('T')[1]}<br/> </Card.Description>

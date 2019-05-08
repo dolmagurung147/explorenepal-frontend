@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 
+import { Button } from 'semantic-ui-react'
+
 class ViewAppointmentForm extends Component {
   state = {
     selectedTourGuide: '',
@@ -64,14 +66,14 @@ class ViewAppointmentForm extends Component {
     return (
       <form onSubmit={this.makeReservationHandler}>
       <h1> Appointment Form</h1>
-      <h2> Choose Date <input type="date" name="appointment_date" onChange={this.selectDateHandler} value={this.state.selectedDate}/></h2>
-      <h2> Choose Time <input type="time" name="appointment_date" onChange={this.selectTimeHandler} value={this.state.selectedTime}/></h2>
+      <h2> Choose Date <input className='inputForm' type="date" name="appointment_date" onChange={this.selectDateHandler} value={this.state.selectedDate}/></h2>
+      <h2> Choose Time <input className='inputForm' type="time" name="appointment_date" onChange={this.selectTimeHandler} value={this.state.selectedTime}/></h2>
       <h2> Choose Tour Guide: </h2>
       <select value={this.state.selectedTourGuide} onChange={this.selectTourGuideHandler}>
         <option value='' >Please Select</option>
         {this.tour_guides_list()}
       </select>
-      <button> Make a Reservation</button>
+      <Button primary> Request a Reservation</Button>
       </form>
     )
   }
