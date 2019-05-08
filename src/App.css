@@ -162,6 +162,8 @@ h4 h2 {
   /* background-color: rgba(18, 152, 194, 0.70) */
   background-color: rgba(226, 232, 237, 0.85);
   text-transform: none;
+  overflow: auto;
+  max-height: 400px;
 
 }
 
@@ -199,7 +201,10 @@ h4 h2 {
   height: 915px;
 }
 .welcome {
-  padding-top: 400px;
+  padding-top: 80px;
+  font-size: 80px;
+  font-family: 'Luckiest Guy', cursive;
+  color: darkblue;
 }
 
 .mainContainer:before {

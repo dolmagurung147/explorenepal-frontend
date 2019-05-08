@@ -7,7 +7,8 @@ const MainPage = () => {
     <div className='showcase'>
     </div>
       <div className='welcome'>
-       <h1 >WELCOME TO EXPLORE NEPAL</h1>
+      <img src='http://www.animatedimages.org/data/media/839/animated-nepal-flag-image-0007.gif'/>
+       <p>WELCOME TO EXPLORE NEPAL</p>
        </div>
     </div>
   )
