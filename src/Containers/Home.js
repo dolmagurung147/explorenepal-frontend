@@ -13,12 +13,12 @@ class Home extends Component {
 
   allDestinations = () => {
     return (
-      <>
-      <div style={{margin: '3%'}}>
+      <div className='mainContainer'>
+      <div  style={{margin: '3%'}}>
         <TopDestinations destinationChosen={this.destinationChosen}/>
       </div>
       <div> <Explore destinationChosen={this.destinationChosen} /> </div>
-      </>
+      </div>
     )
   }
 
@@ -26,10 +26,11 @@ class Home extends Component {
     this.props.viewEachDestinationPage(false)
     this.props.setChosenDestination(destination)
   }
+  // <div className='mainContainer'>
 
   render() {
     return (
-      <div className='mainContainer'>
+      <div>
       {this.props.explorePageToRender ? this.allDestinations() : <DestinationShowPage/>}
       </div>
     )

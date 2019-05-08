@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import { Grid, Image, Button, Card } from 'semantic-ui-react'
+import { Grid, Image, Button, Card, Icon } from 'semantic-ui-react'
 
 import ViewAppointmentForm from '../Components/ViewAppointmentForm'
 import RatingConversion from '../Components/RatingConversion'
@@ -19,7 +19,7 @@ class DestinationShowPage extends Component {
 
   destinationImages = () => {
     return this.props.chosenDestination.destination_images.map((imageObj) => {
-      return <Card className='moreImages' key={imageObj.id}><Image src={imageObj.image} alt="" style={{margin: '3%'}}/></Card>
+      return <Card className='moreImages' key={imageObj.id}><Image src={imageObj.image} alt="" style={{margin: '3%'}} className='whatever'/></Card>
       })
   }
 
@@ -53,7 +53,6 @@ class DestinationShowPage extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className='manageDestinationTopMargin'>
         <div className='backButton'>
@@ -63,7 +62,7 @@ class DestinationShowPage extends Component {
         <div style={{textAlign: 'center'}}>{this.props.loggedIn && this.props.whoIsLoggedIn === 'tourist' ? this.booknow() : null}</div>
         <div className='ui divider'>
         <Grid celled='internally' id='secondRow'>
-          <Grid.Row>
+          <Grid.Row >
             <Grid.Column width={8}>
               {this.props.chosenDestination ?<img src={this.props.chosenDestination.destination_images[0].image} alt=''/> : null}
             </Grid.Column>
@@ -76,12 +75,14 @@ class DestinationShowPage extends Component {
           <Grid.Row >
             <Grid.Column width={8}>
               <div className='firstcolumn'>
+              <div style={{marginLeft: '10px'}}>
               <h1> About: </h1>
-              <h4> Location: {this.props.chosenDestination.location} </h4>
-              <h4> Difficulty-level: {this.props.chosenDestination.difficulty_level}</h4>
-              <h4> Cost for this Destination: $ {this.props.chosenDestination.costForThisDestination}</h4>
-              <h4> Short Description: {this.props.chosenDestination.about}</h4>
-              <h4> Best Time To Visit:{this.props.chosenDestination.best_time_to_visit}</h4>
+              <h4> <Icon name='map marker alternate' />Location: <br/> {this.props.chosenDestination.location} </h4>
+              <h4> <Icon name='chart line' />Difficulty-level: {this.props.chosenDestination.difficulty_level}</h4>
+              <h4> <Icon name='dollar sign' />Cost for this Destination: $ {this.props.chosenDestination.costForThisDestination}</h4>
+              <h4> <Icon name='info circle' />Short Description: <br/> {this.props.chosenDestination.about}</h4>
+              <h4> <Icon name='time' />Best Time To Visit: <br/> {this.props.chosenDestination.best_time_to_visit}</h4>
+              </div>
               </div>
             </Grid.Column>
             <Grid.Column width={8}>
@@ -91,7 +92,7 @@ class DestinationShowPage extends Component {
                 {this.props.chosenDestination.reviews.map(reviewObj => {
                 return (
                   <div key={reviewObj.id} style={{borderStyle:'ridge', textAlign:'left'}}>
-                    <div className='reviewObjects'>Reviewed By: {!this.props.allTourists.length? null : this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name} <br/>
+                    <div className='reviewObjects'>Reviewed By:  {!this.props.allTourists.length? null : this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name} <Icon name='user circle'/> <br/>
                     Rating : {reviewObj.rating} <br/>
                     Review: {reviewObj.review}</div>
                   </div>

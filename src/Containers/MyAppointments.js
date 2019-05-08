@@ -21,9 +21,11 @@ const MyAppointments = (props) => {
   }
 
   return (
-    <div className='manageTopMargin'>
-      <h1>MY APPOINTMENTS </h1>
-      {props.myAppointments.length > 0 ?  myAppointmentCards() : noAppointmentYet() }
+    <div className='mainContainer'>
+      <h1 id='lol' className='manageTopMargin '>MY APPOINTMENTS </h1>
+      <div className='appointmentContainer mainContainer' >
+        {props.myAppointments.length > 0 ?  myAppointmentCards() : noAppointmentYet() }
+      </div>
     </div>
   )
 }

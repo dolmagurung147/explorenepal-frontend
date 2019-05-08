@@ -17,7 +17,7 @@ const TopDestinations = (props) => {
 
   return (
     <div className='manageTopMargin myCarousel'>
-      <h1>Top Destinations</h1>
+      <h1 style={{fontSize: '36px'}}>Top Destinations</h1>
       <CarouselProvider
         naturalSlideWidth={75}
         naturalSlideHeight={75}

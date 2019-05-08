@@ -18,7 +18,25 @@
   margin-top: 50px;
   text-align: center;
 }
+/*  */
+#lol {
+  margin-top: 50px;
+}
 
+.appointmentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.appointmentImg {
+  height: 300px;
+}
+
+#appointmentHeader {
+  height: 70px;
+}
+/*  */
 .myCarousel {
   height: 500px;
 }
@@ -30,6 +48,7 @@
 .right.menu.loginLogoutBtn {
   margin-right: 30px;
 }
+
 
 
 /* Explore cards for the home page  */
@@ -46,12 +65,17 @@
 
 h1 {
   font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  text-transform: none;
 }
 
+
+
 h4 h2 {
-  color: rgba(0,0,0);
   font-family: 'Gilda Display', serif;
+  text-transform: none;
 }
+
 
 
 /*  SHOW MY PROFILE PAGE ..............  */
@@ -108,18 +132,34 @@ h4 h2 {
   flex-wrap: wrap;
 }
 
-#secondRow {
-  /* background-color: rgb(73, 188, 213); */
+#secondRow:before {
+  content: "";
   background-image: url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png');
-  background-repeat: no-repeat;
-   background-size: cover;
+  position: absolute;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
+
+#secondRow {
+  /* background-color: rgb(56, 71,75, 0.8); */
+  background-color:rgb(134, 184, 224,0.6);
+    height: auto;
+    position: relative;
+}
+
+
 
 .firstcolumn {
   border-style: ridge;
   border-radius: auto;
   /* background-color: rgba(18, 152, 194, 0.70) */
-  background-color: rgba(226, 232, 237, 0.85)
+  background-color: rgba(226, 232, 237, 0.85);
+  text-transform: none;
+
 }
 
 .ui.card.moreImages {
@@ -133,10 +173,20 @@ h4 h2 {
 
 .manageDestinationTopMargin {
   margin-top: 50px;
+  background-image: url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png');
+  background-position-x: 56%;
 }
 
 .backButton {
   margin-left: 85%;
+}
+
+.whatever {
+  display: block;
+  max-width:230px;
+  max-height:200px;
+  width: auto;
+  height: auto;
 }
 
 /****************************************  */
@@ -145,14 +195,24 @@ h4 h2 {
   padding-top: 400px;
 }
 
+.mainContainer:before {
+  content: "";
+  background-image: url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png');
+  position: absolute;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+}
+
 .mainContainer {
- background-image: url('https://www.backpacker.com/.image/t_share/MTU3OTkxNTk4MTk2NTMyNzQw/bp1018ednote_annapurana.png');
- /* position: fixed; */
- background-repeat: no-repeat;
- background-size: cover;
- /* margin-left: -15px; */
- /* width: 100%; */
- /* height: 100%; */
-/* opacity: 0.7; */
-/* z-index: -1; */
+  background-color:rgb(134, 184, 224,0.6);
+    height: auto;
+    position: relative;
 }

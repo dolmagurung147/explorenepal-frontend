@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 
 class MyAppointmentCard extends Component{
 
@@ -79,8 +79,8 @@ class MyAppointmentCard extends Component{
     if (this.state.editButtonClicked) {
       return (
         <Card >
-          <h1>{destinationInfo.name}</h1> <br/>
-          <Image src={destinationInfo.destination_images[0].image} wrapped alt='' />  <br/>
+          <h1 id='appointmentHeader'>{destinationInfo.name}</h1> <br/>
+          <Image className='appointmentImg' src={destinationInfo.destination_images[0].image} wrapped alt='' />  <br/>
           Date: <input type='date' value={this.state.editedDate} name='editedDate' onChange={this.dateAndTimeChangeHandler}/> <br/>
           Time: <input type='time' value={this.state.editedTime} name='editedTime' onChange={this.dateAndTimeChangeHandler}/> <br/>
           {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name} </p>} <br/>
@@ -89,14 +89,14 @@ class MyAppointmentCard extends Component{
       )
     } else {
       return (
-        <Card>
-          <h1>{destinationInfo.name}</h1> <br/>
-          <img src={destinationInfo.destination_images[0].image} alt=''/>  <br/>
+        <Card style={{marginBottom: '40px'}}>
+          <h1 id='appointmentHeader'>{destinationInfo.name}</h1> <br/>
+          <img className='appointmentImg' src={destinationInfo.destination_images[0].image} alt=''/>  <br/>
           Date: {this.props.myAppointment.date_and_time.split('T')[0]} <br/>
           Time: {this.props.myAppointment.date_and_time.split('T')[1]} <br/>
           {this.props.whoIsLoggedIn === 'tourist' ? <p>Assigned Tour Guide: {userInfo.name}</p> : <p> Appointed Tourist: {userInfo.name}</p>} <br/>
-          <button onClick={this.deleteAppointmentHandler}>Delete This Appointment </button> <br/>
-          <button onClick={this.editAppointmentHandler}>Edit This Appointment </button> <br/> <br/>
+          <Button primary onClick={this.editAppointmentHandler}>Edit This Appointment </Button> <br/> <br/>
+          <Button color='red' onClick={this.deleteAppointmentHandler}>Delete This Appointment </Button> <br/>
         </Card>
       )
     }
