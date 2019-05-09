@@ -15,6 +15,7 @@ class DestinationShowPage extends Component {
   componentDidMount(){
     if (!this.props.allTourists.length) {
       this.props.fetchAllTourists();
+      this.props.fetchDestinations();
     }
   }
 
@@ -60,6 +61,7 @@ class DestinationShowPage extends Component {
   }
 
   render() {
+    console.log('THIS IS RENDERED AFTER DISPATCH');
     return (
       <div className='manageDestinationTopMargin'>
         <div className='backButton'>
@@ -121,7 +123,8 @@ const mapStateToProps = (state) => {
     whoIsLoggedIn: state.whoIsLoggedIn,
     loggedInuserInfo: state.loggedInuserInfo,
     allTourists: state.allTourists,
-    chosenDestination: state.chosenDestination
+    chosenDestination: state.chosenDestination,
+    destinations: state.destinations
   }
 }
 

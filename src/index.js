@@ -111,9 +111,9 @@ const reducer = (state=initialState, action) => {
     case ADDNEWREVIEW:
       const newdestination = state.destinations.length ? state.destinations.find(destination => destination.id === action.payload.destination_id) : null
       newdestination.reviews.push(action.payload)
+      debugger
       return {...state, destinations: [...state.destinations.filter(destination => destination.id !== newdestination.id), newdestination].sort((a,b) => a.id - b.id)}
     case ADDNEWTOURISTREVIEW:
-    debugger
       const newTourist = state.allTourists.length ? state.allTourists.find(tourist => tourist.id === action.payload.tourist_id) : null
       newTourist.tour_guide_reviews.push(action.payload)
       return {...state, allTourists: [...state.allTourists.filter(tourist => tourist.id !== newTourist.id), newTourist].sort((a,b) => a.id - b.id)}
