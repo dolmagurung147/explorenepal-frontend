@@ -3,7 +3,7 @@ import { Card, Image } from 'semantic-ui-react'
 
 const TopDestinationCard = (props) => {
   let imageArr = props.destination.destination_images
-  let image = imageArr[2]
+  let image = imageArr[1]
 
   function imageClickHandler() {
     props.destinationChosen(props.destination)
