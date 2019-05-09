@@ -8,7 +8,8 @@ import RatingConversion from '../Components/RatingConversion'
 
 class DestinationShowPage extends Component {
   state = {
-    viewAppointmentForm: false
+    viewAppointmentForm: false,
+    currentMainImage: this.props.chosenDestination.destination_images[0].image,
   }
 
   componentDidMount(){
@@ -17,9 +18,15 @@ class DestinationShowPage extends Component {
     }
   }
 
+  imageClickHandler = (e) => {
+    this.setState({
+      currentMainImage: e.target.src
+    })
+  }
+
   destinationImages = () => {
     return this.props.chosenDestination.destination_images.map((imageObj) => {
-      return <Card className='moreImages' key={imageObj.id}><Image src={imageObj.image} alt="" style={{margin: '3%'}} className='whatever'/></Card>
+      return <Card className='moreImages' key={imageObj.id} onClick={this.imageClickHandler}><Image src={imageObj.image} alt="" style={{margin: '3%'}} className='whatever'/></Card>
       })
   }
 
@@ -64,7 +71,7 @@ class DestinationShowPage extends Component {
         <Grid celled='internally' id='secondRow'>
           <Grid.Row >
             <Grid.Column width={8}>
-              {this.props.chosenDestination ?<img style={{maxHeight: '500px'}} src={this.props.chosenDestination.destination_images[0].image} alt=''/> : null}
+              {this.props.chosenDestination ?<img style={{maxHeight: '500px'}} src={this.state.currentMainImage} alt=''/> : null}
             </Grid.Column>
             <Grid.Column width={8} >
               <div className='eachDestinationShowPageImages'>
