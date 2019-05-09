@@ -4,6 +4,8 @@ import * as actions from '../actions'
 
 import { withRouter } from 'react-router-dom'
 
+import { Button, Divider } from 'semantic-ui-react'
+
 class PlaceIVistedCard extends Component{
 
   state = {
@@ -36,8 +38,8 @@ class PlaceIVistedCard extends Component{
       <div>
         {this.props.destination ? <><h1>{this.props.destination.name}</h1><br/><img src={this.props.destination.destination_images[0].image} alt=''/></> : null}
         {this.props.tourGuide ? <h2> Tour Guide: {this.props.tourGuide.name} </h2> : null}
-        <button onClick={this.rateDestinationHandler}> Rate this destination </button>
-        <button onClick={this.rateTourGuideHandler}> Rate this Tour Guide </button>
+        <Button onClick={this.rateDestinationHandler}> Rate this destination </Button>
+        <Button onClick={this.rateTourGuideHandler}> Rate this Tour Guide </Button>
       </div>
     )
   }
@@ -75,6 +77,7 @@ class PlaceIVistedCard extends Component{
     })
     .then (res => res.json())
     .then (review => this.props.addNewDestinationReview(review))
+    this.props.fetchDestinations();
     this.setState({
       reviewDestination: false
     })
@@ -130,7 +133,7 @@ class PlaceIVistedCard extends Component{
           </select>
           <h2>Review: </h2>
           <input type='text' name='destinationReview' value={this.state.review} onChange={this.reviewChangeHandler}/>
-          <button onClick={this.submitDReviewHandler}> SUBMIT </button>
+          <Button onClick={this.submitDReviewHandler}> SUBMIT </Button>
         </div>
       )
     } else if (this.state.reviewTourGuide) {
@@ -147,7 +150,7 @@ class PlaceIVistedCard extends Component{
         </select>
         <h2>Review: </h2>
         <input type='text' name='tourGuideReview' value={this.state.review} onChange={this.reviewChangeHandler}/>
-        <button onClick={this.submitTGReviewHandler}> SUBMIT </button>
+        <Button onClick={this.submitTGReviewHandler}> SUBMIT </Button>
         </div>
       )
     }
@@ -157,6 +160,7 @@ class PlaceIVistedCard extends Component{
     return (
       <div>
         {this.state.reviewTourGuide || this.state.reviewDestination ? this.eitherReviewDestinationOrTourGuide() : this.showDestinationAndTourGuidePage()}
+        <br/><br/>
       </div>
     )
   }

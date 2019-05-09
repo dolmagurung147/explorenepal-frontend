@@ -99,7 +99,7 @@ class DestinationShowPage extends Component {
                 {this.props.chosenDestination.reviews.map(reviewObj => {
                 return (
                   <div key={reviewObj.id} style={{borderStyle:'ridge', textAlign:'left'}}>
-                    <div className='reviewObjects'>Reviewed By:  {!this.props.allTourists.length? null : this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name} <Icon name='user circle'/> <br/>
+                    <div className='reviewObjects'>Reviewed By: <Icon name='user circle'/> {!this.props.allTourists.length? null : this.props.allTourists.find(tourist => tourist.id === reviewObj.tourist_id).name}  <br/>
                     Rating : <RatingConversion rating={reviewObj.rating}/> <br/>
                     Review: {reviewObj.review}</div>
                   </div>

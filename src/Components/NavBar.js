@@ -17,10 +17,10 @@ const NavBar = (props) => {
         <Menu.Item as='a' onClick={sidebarClickHandler}>
           <Icon name='sidebar' />
         </Menu.Item>
-        <Menu.Item name='Home' as='a' as={Link} to="/home">
+        <Menu.Item name='Home' as='a' as={Link} to="/home" style={{fontFamily: 'Pacifico'}}>
           <Icon name='home' />Home
         </Menu.Item>
-        {props.loggedin ? <Menu.Menu position='right' className='loginLogoutBtn'><Menu.Item name='Logout' as={Link} to='/' onClick={() => logOut(props)} /> </Menu.Menu> : <Menu.Menu position='right'><Menu.Item name='Login' as={Link} to='/login'/></Menu.Menu>}
+        {props.loggedin ? <Menu.Menu position='right' className='loginLogoutBtn'><Menu.Item name='Logout' as={Link} to='/' onClick={() => logOut(props)} style={{fontFamily: 'Pacifico'}}/> </Menu.Menu> : <Menu.Menu position='right'><Menu.Item name='Login or Signup' as={Link} to='/login' style={{fontFamily: 'Pacifico'}}/></Menu.Menu>}
       </Menu>
     </header>
   )

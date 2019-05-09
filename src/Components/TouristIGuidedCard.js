@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import { Button, Image, Card, Form, Dropdown } from 'semantic-ui-react'
+
 class TouristIGuidedCard extends Component {
 
   state = {
@@ -67,19 +69,21 @@ class TouristIGuidedCard extends Component {
         <option value="5">5 STAR</option>
       </select>
       <h2>Review: </h2>
-      <input type='text' name='touristReview' value={this.state.review} onChange={this.touristReviewChangeHandler}/>
-      <button onClick={this.submitTouristReviewHandler}> SUBMIT </button>
+      <Form reply>
+      <Form.TextArea type='text' name='touristReview' value={this.state.review} onChange={this.touristReviewChangeHandler}/>
+      <Button primary onClick={this.submitTouristReviewHandler}> SUBMIT </Button>
+      </Form>
       </>
     )
   }
 
   render() {
     return (
-      <div>
-      <img src={this.props.tourist.profile_picture} alt='' /> <br />
-      <h2>Name: {this.props.tourist.name}</h2>
-      {this.state.rateButtonClicked ? this.viewRatingAndReviewColumns() : <button onClick={this.rateTouristHandler}> Rate this Tourist </button>}
-      </div>
+      <Card style={{textAlign: 'center'}}>
+      <Image src={this.props.tourist.profile_picture} alt='' style={{maxHeight: '450px', margin: 'auto'}}/> <br />
+      <h2 >{this.props.tourist.name}</h2>
+      {this.state.rateButtonClicked ? this.viewRatingAndReviewColumns() : <Button primary onClick={this.rateTouristHandler}> Rate this Tourist </Button >}
+      </Card>
     )
   }
 }

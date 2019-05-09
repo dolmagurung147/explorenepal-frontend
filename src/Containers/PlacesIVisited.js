@@ -4,18 +4,6 @@ import PlaceIVistedCard from '../Components/PlaceIVistedCard'
 
 class PlacesIVisited extends Component {
 
-  // state = {
-  //   allTourGuides: []
-  // }
-
-  // componentDidMount() {
-  //   fetch('http://localhost:3000/tour_guides')
-  //   .then(res => res.json())
-  //   .then(tour_guides => this.setState({
-  //       allTourGuides: tour_guides
-  //     })
-  //   )
-  // }
 
   findDestination = (destination_id) => {
     if (this.props.destinations.length > 0) {

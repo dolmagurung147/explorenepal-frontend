@@ -23,7 +23,7 @@ const MyAppointments = (props) => {
   return (
     <div className='mainContainer'>
       <h1 id='lol' className='manageTopMargin '>MY APPOINTMENTS </h1>
-      <div className='appointmentContainer mainContainer' >
+      <div className='appointmentContainer mainContainer' style={{height: '915px'}}>
         {props.myAppointments.length > 0 ?  myAppointmentCards() : noAppointmentYet() }
       </div>
     </div>
