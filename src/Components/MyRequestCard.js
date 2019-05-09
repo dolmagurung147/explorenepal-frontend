@@ -45,8 +45,8 @@ class MyRequestCard extends Component {
       <div>
         <Card.Header><Icon name='user' /> {this.aboutTourGuide() ? this.aboutTourGuide().name : null} </Card.Header>
         <Card.Meta> Destination: {this.destinationName()}</Card.Meta> <br/>
-        <Card.Description>Date : {this.props.request.date_and_time.split('T')[0]}<br/>
-        Time : {this.props.request.date_and_time.split('T')[1]}<br/> </Card.Description>
+        <Card.Description>Date : {this.props.request.date_and_time ? this.props.request.date_and_time.split('T')[0] : null}<br/>
+        Time : {this.props.request.date_and_time ? this.props.request.date_and_time.split('T')[1] : null}<br/> </Card.Description>
         <Button color='red' onClick={this.cancelRequestHandler}>Cancel this request</Button >
       </div>
     )

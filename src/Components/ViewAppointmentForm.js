@@ -2,24 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 
-import { Button } from 'semantic-ui-react'
+import RatingConversion from './RatingConversion'
+
+import { Button, Card, Image } from 'semantic-ui-react'
 
 class ViewAppointmentForm extends Component {
   state = {
     selectedTourGuide: '',
     selectedDate: '',
-    selectedTime: ''
+    selectedTime: '',
+    showTourGuideInfo: false,
+    defaultImage: 'https://www.puriindahmall.co.id/assets/img/default.png'
   }
+
+  componentDidMount() {
+      if (!this.props.allTourGuides.length) {
+        this.props.fetchAllTourGuides();
+      }
+  }
+
 
   tour_guides_list = () =>{
     return this.props.allTourGuides.map((tour_guide) => {
-      return <option value={tour_guide.name} key={tour_guide.id}>{tour_guide.name}</option>
+      return <option value={tour_guide.name} key={tour_guide.id} >{tour_guide.name} </option>
     })
   }
 
+
   selectTourGuideHandler = (e) => {
+    // this.setState({
+    //   selectedTourGuide: e.target.value
+    // })
     this.setState({
-      selectedTourGuide: e.target.value
+      selectedTourGuide: e.target.value,
+      showTourGuideInfo: true
     })
   }
 
@@ -62,18 +78,53 @@ class ViewAppointmentForm extends Component {
     }
   }
 
+  tourguidechosenHandler = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({
+      showTourGuideInfo: false
+    })
+  }
+
+  tourguiderejectHandler = (e) => {
+    e.preventDefault();
+    console.log("REJECTED");
+    this.setState({
+      selectedTourGuide: '',
+      showTourGuideInfo: false
+    })
+  }
+
+  showTourGuideInfo = () => {
+    console.log(this.state.selectedTourGuide);
+    let selectedTourGuide = this.props.allTourGuides.find(tour_guideObj => tour_guideObj.name === this.state.selectedTourGuide)
+    console.log(selectedTourGuide);
+    return (
+      <Card style={{marginLeft: '42%'}}>
+        <Image src={selectedTourGuide.profile_picture ? selectedTourGuide.profile_picture : this.state.defaultImage} />
+        <h1>{selectedTourGuide.name}</h1>
+        <h3>Rating: </h3> <RatingConversion rating={selectedTourGuide.avgrating} />
+        <div className='ui two buttons' >
+          <Button basic color='blue' onClick={this.tourguidechosenHandler}> Choose </Button>
+          <Button basic color='red' onClick={this.tourguiderejectHandler}> Reject </Button>
+        </div>
+      </Card>
+    )
+  }
+
   render(){
     return (
-      <form onSubmit={this.makeReservationHandler}>
+      <form >
       <h1> Appointment Form</h1>
       <h2> Choose Date <input className='inputForm' type="date" name="appointment_date" onChange={this.selectDateHandler} value={this.state.selectedDate}/></h2>
       <h2> Choose Time <input className='inputForm' type="time" name="appointment_date" onChange={this.selectTimeHandler} value={this.state.selectedTime}/></h2>
       <h2> Choose Tour Guide: </h2>
       <select value={this.state.selectedTourGuide} onChange={this.selectTourGuideHandler}>
-        <option value='' >Please Select</option>
+        <option value=''>Please Select</option>
         {this.tour_guides_list()}
       </select>
-      <Button primary> Request a Reservation</Button>
+      {this.state.showTourGuideInfo ? this.showTourGuideInfo() : null}
+      <Button primary onClick={this.makeReservationHandler}> Request a Reservation</Button>
       </form>
     )
   }

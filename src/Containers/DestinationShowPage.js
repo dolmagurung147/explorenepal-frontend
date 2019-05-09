@@ -73,7 +73,7 @@ class DestinationShowPage extends Component {
         <Grid celled='internally' id='secondRow'>
           <Grid.Row >
             <Grid.Column width={8}>
-              {this.props.chosenDestination ?<img style={{maxHeight: '500px'}} src={this.state.currentMainImage} alt=''/> : null}
+              {this.props.chosenDestination ?<img style={{maxHeight: '500px', width: "100%"}} src={this.state.currentMainImage} alt=''/> : null}
             </Grid.Column>
             <Grid.Column width={8} >
               <div className='eachDestinationShowPageImages'>
@@ -88,7 +88,7 @@ class DestinationShowPage extends Component {
               <h1> About: </h1>
               <h4> <Icon name='map marker alternate' />Location: <br/> {this.props.chosenDestination.location} </h4>
               <h4> <Icon name='chart line' />Difficulty-level: {this.props.chosenDestination.difficulty_level}</h4>
-              <h4> <Icon name='dollar sign' />Cost for this Destination: $ {this.props.chosenDestination.costForThisDestination}</h4>
+              <h4> <Icon name='dollar sign' />Charge for Tour Guide per day: $ {this.props.chosenDestination.costForThisDestination}</h4>
               <h4> <Icon name='info circle' />Short Description: <br/> {this.props.chosenDestination.about}</h4>
               <h4> <Icon name='time' />Best Time To Visit: <br/> {this.props.chosenDestination.best_time_to_visit}</h4>
               </div>
