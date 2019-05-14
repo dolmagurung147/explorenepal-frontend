@@ -106,7 +106,7 @@ class ViewAppointmentForm extends Component {
         <h3>Rating: </h3> <RatingConversion rating={selectedTourGuide.avgrating} />
         <div className='ui two buttons' >
           <Button basic color='blue' onClick={this.tourguidechosenHandler}> Choose </Button>
-          <Button basic color='red' onClick={this.tourguiderejectHandler}> Reject </Button>
+          <Button basic color='red' onClick={this.tourguiderejectHandler}> Pass </Button>
         </div>
       </Card>
     )
