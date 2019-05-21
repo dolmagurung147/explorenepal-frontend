@@ -30,16 +30,7 @@ class TouristSignup extends React.Component {
     this.props.history.push('/home')
   }
 
-  // <form onSubmit={this.onSubmitHandler}>
-  // Name: <input type="text" name="name" onChange={this.onChangeHandler} />
-  // Profile Picture: <input type="text" name="profile_picture" onChange={this.onChangeHandler} />
-  // Username: <input type="text" name="username" onChange={this.onChangeHandler} />
-  // Password: <input type="password" name="password" onChange={this.onChangeHandler} />
-  // Short-Bio: <input type="text" name="short_bio" onChange={this.onChangeHandler} />
-  // Picture-Id: <input type="text" name="picture_id" onChange={this.onChangeHandler} />
-  // DOB: <input type="date" name="date_of_birth" onChange={this.onChangeHandler} />
-  // <button> Signup </button>
-  // </form>
+
   render() {
     return (
       <div>
@@ -56,6 +47,7 @@ class TouristSignup extends React.Component {
               <Form.Input label='Profile Picture' type="text" value={this.state.profile_picture} name='profile_picture' onChange={this.onChangeHandler} placeholder='Profile Picture'/>
               <Form.Input label='Date of Birth:' type="date" value={this.state.date_of_birth} name='date_of_birth' onChange={this.onChangeHandler} placeholder='DOB'/>
             <Button basic color='blue' onClick={this.onSubmitHandler}> Signup </Button>
+            <Button basic color='red' onClick={this.props.cancelSignupHandler}> Cancel </Button>
           </Form>
         </Card.Content>
       </Card>

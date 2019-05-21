@@ -61,7 +61,6 @@ class DestinationShowPage extends Component {
   }
 
   render() {
-    console.log('THIS IS RENDERED AFTER DISPATCH');
     return (
       <div className='manageDestinationTopMargin'>
         <div className='backButton'>

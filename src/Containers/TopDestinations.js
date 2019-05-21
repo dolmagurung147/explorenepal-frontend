@@ -7,7 +7,6 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import TopDestinationCard from '../Components/TopDestinationCard'
 
 const TopDestinations = (props) => {
-  console.log(props.topDestinations);
 
   const topDestinationsCardArr = () => {
       return props.topDestinations.map(destinationObj => {

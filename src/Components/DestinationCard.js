@@ -3,7 +3,6 @@ import { Card, Image } from 'semantic-ui-react'
 
 const DestinationCard = (props) => {
   let imageArr = props.destination.destination_images
-  // let image = imageArr[Math.floor(Math.random()*imageArr.length)]
   let image = imageArr[0]
 
   function imageClickHandler() {

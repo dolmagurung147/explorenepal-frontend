@@ -26,7 +26,6 @@ class Home extends Component {
     this.props.viewEachDestinationPage(false)
     this.props.setChosenDestination(destination)
   }
-  // <div className='mainContainer'>
 
   render() {
     return (

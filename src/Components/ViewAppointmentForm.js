@@ -125,6 +125,7 @@ class ViewAppointmentForm extends Component {
       </select>
       {this.state.showTourGuideInfo ? this.showTourGuideInfo() : null}
       <Button primary onClick={this.makeReservationHandler}> Request a Reservation</Button>
+      <Button color='red' onClick={this.props.toggleBackState}> Cancel </Button>
       </form>
     )
   }

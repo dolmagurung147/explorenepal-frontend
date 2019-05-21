@@ -90,13 +90,6 @@ class Login extends React.Component {
     </div>
     )
   }
-  // <form onSubmit={this.tourguideLoginFormHandler}>
-  //   Username: <input type="text" name="username" onChange={this.usernameOnchangeHandler}/>
-  //   Password: <input type="password" name="password" onChange={this.passwordOnchangeHandler}/>
-  //   <button> Submit </button>
-  // </form>
-  //
-  // <button onClick={this.tourguideSignupPageHandler}> New Tourguide? </button>
 
   tourguideLoginForm = () => {
     return (
@@ -125,8 +118,15 @@ class Login extends React.Component {
     return this.state.touristLogin? this.touristLoginForm() : this.tourguideLoginForm()
   }
 
+  cancelSignupHandler = (e) => {
+    e.preventDefault();
+    this.setState({
+      newUser: false
+    })
+  }
+
   signupFormHandler = () => {
-    return this.state.touristSignup? <TouristSignup /> : <TourGuideSignup />
+    return this.state.touristSignup? <TouristSignup cancelSignupHandler={this.cancelSignupHandler}/> : <TourGuideSignup cancelSignupHandler={this.cancelSignupHandler}/>
   }
 
   render(){
